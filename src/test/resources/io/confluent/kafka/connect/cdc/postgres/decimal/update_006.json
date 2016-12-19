@@ -1,37 +1,57 @@
 {
-  "location" : "0/16352D0",
+  "location" : "0/16352D8",
   "xid" : 568,
-  "timestamp" : 1482166125569,
-  "data" : "table public.decimal_50_5: UPDATE: id[bigint]:1 value[numeric]:58918106571666.65707",
+  "timestamp" : 1482181656836,
+  "data" : "table public.decimal_50_5: UPDATE: id[bigint]:1 value[numeric]:13857916239590.84978",
+  "tableMetadata" : {
+    "schemaName" : "public",
+    "tableName" : "decimal_50_5",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT64",
+        "isOptional" : true
+      },
+      "value" : {
+        "name" : "org.apache.kafka.connect.data.Decimal",
+        "type" : "BYTES",
+        "version" : 1,
+        "parameters" : {
+          "scale" : "5"
+        },
+        "isOptional" : true
+      }
+    }
+  },
   "expected" : {
     "metadata" : { },
     "sourcePartition" : { },
     "sourceOffset" : {
-      "testing" : "0/16352D0"
+      "testing" : "0/16352D8"
     },
     "schemaName" : "public",
     "tableName" : "decimal_50_5",
     "changeType" : "UPDATE",
-    "timestamp" : 1482166125569,
+    "timestamp" : 1482181656836,
     "keyColumns" : [ {
       "columnName" : "id",
       "value" : 1,
-      "jsonConnectSchema" : {
-        "type" : "INT32",
+      "schema" : {
+        "type" : "INT64",
         "isOptional" : true
       }
     } ],
     "valueColumns" : [ {
       "columnName" : "id",
       "value" : 1,
-      "jsonConnectSchema" : {
-        "type" : "INT32",
+      "schema" : {
+        "type" : "INT64",
         "isOptional" : true
       }
     }, {
       "columnName" : "value",
-      "value" : -66090143541009.79497,
-      "jsonConnectSchema" : {
+      "value" : 308537609360.55210,
+      "schema" : {
         "name" : "org.apache.kafka.connect.data.Decimal",
         "type" : "BYTES",
         "version" : 1,
@@ -41,6 +61,5 @@
         "isOptional" : true
       }
     } ]
-  },
-  "keyColumns" : [ "id" ]
+  }
 }

@@ -4,8 +4,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import com.google.common.collect.Multiset;
 import com.palantir.docker.compose.DockerComposeRule;
 import com.palantir.docker.compose.connection.Container;
 import io.codearte.jfairy.Fairy;
@@ -36,7 +34,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -78,7 +75,6 @@ public class PostgreSQLSourceTaskTest {
   }
 
 
-
   @Disabled
   @Test
   public void decimalTestCase() throws IOException, SQLException {
@@ -91,7 +87,7 @@ public class PostgreSQLSourceTaskTest {
         String insertSQL = String.format("INSERT INTO %s(value) values (?)", tableName);
 
         Long id = null;
-        try(PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS)) {
           BigDecimal decimal = TestDataUtils.randomBigDecimal(scale);
           insertStatement.setBigDecimal(1, decimal);
           insertStatement.execute();
@@ -107,7 +103,7 @@ public class PostgreSQLSourceTaskTest {
         tableName = String.format("DECIMAL_%d_%d", precision, scale);
         String updateSQL = String.format("UPDATE %s SET value = ? where ID = ?", tableName);
 
-        try(PreparedStatement insertStatement = connection.prepareStatement(updateSQL)) {
+        try (PreparedStatement insertStatement = connection.prepareStatement(updateSQL)) {
           BigDecimal decimal = TestDataUtils.randomBigDecimal(scale);
           insertStatement.setBigDecimal(1, decimal);
           insertStatement.setLong(2, id);
@@ -119,12 +115,12 @@ public class PostgreSQLSourceTaskTest {
 
       File parentFile = new File("/Users/jeremy/source/confluent/kafka-connect/public/kafka-connect-cdc/kafka-connect-cdc-postgres/src/test/resources/io/confluent/kafka/connect/cdc/postgres/decimal");
 
-      try(ResultSet results = this.task.queryChanges()) {
-        int insert=0, update=0;
+      try (ResultSet results = this.task.queryChanges()) {
+        int insert = 0, update = 0;
 
         Pattern tablePattern = Pattern.compile("^table public.(decimal_(\\d+)_(\\d+)): (INSERT|UPDATE)");
 
-        while(results.next()) {
+        while (results.next()) {
           String location = results.getString(1);
           Long xid = results.getLong(2);
           String data = results.getString(3);
@@ -138,19 +134,26 @@ public class PostgreSQLSourceTaskTest {
 
           Matcher matcher = tablePattern.matcher(data);
 
-          if(!matcher.find()) {
+          if (!matcher.find()) {
             continue;
           }
 
           String tableName = matcher.group(1);
           String changeType = matcher.group(4);
           int scale = Integer.parseInt(matcher.group(3));
+          Schema valueSchema = Decimal.builder(scale).optional().build();
 
           testData.expected = new JsonChange();
-          testData.keyColumns.add("id");
+          testData.tableMetadata = new JsonTableMetadata();
+          testData.tableMetadata.keyColumns().add("id");
+          testData.tableMetadata.schemaName = "public";
+          testData.tableMetadata.tableName = tableName;
+          testData.tableMetadata.columnSchemas.put("id", Schema.OPTIONAL_INT64_SCHEMA);
+          testData.tableMetadata.columnSchemas.put("value", valueSchema);
+
           Collection<BigDecimal> values = keyToValues.get(tableName.toUpperCase());
-          BigDecimal expectedValue=null;
-          for(BigDecimal v:values){
+          BigDecimal expectedValue = null;
+          for (BigDecimal v : values) {
             expectedValue = v;
           }
           values.remove(expectedValue);
@@ -159,11 +162,11 @@ public class PostgreSQLSourceTaskTest {
           testData.expected.schemaName("public");
           testData.expected.tableName(tableName);
           testData.expected.sourceOffset().put("testing", location);
-          testData.expected.keyColumns().add(new JsonColumnValue("id", Schema.OPTIONAL_INT32_SCHEMA, 1));
-          testData.expected.valueColumns().add(new JsonColumnValue("id", Schema.OPTIONAL_INT32_SCHEMA, 1));
-          testData.expected.valueColumns().add(new JsonColumnValue("value", Decimal.builder(scale).optional().build(), expectedValue));
+          testData.expected.keyColumns().add(new JsonColumnValue("id", Schema.OPTIONAL_INT64_SCHEMA, 1));
+          testData.expected.valueColumns().add(new JsonColumnValue("id", Schema.OPTIONAL_INT64_SCHEMA, 1));
+          testData.expected.valueColumns().add(new JsonColumnValue("value", valueSchema, expectedValue));
 
-          if(changeType.equals("UPDATE")) {
+          if (changeType.equals("UPDATE")) {
             update++;
             testData.expected.changeType(Change.ChangeType.UPDATE);
             String filename = String.format("update_%03d.json", update);
@@ -184,7 +187,7 @@ public class PostgreSQLSourceTaskTest {
     }
   }
 
-//  @Test
+  //  @Test
   public void queryChanges() throws SQLException, IOException {
     Multimap<Long, String> idToEmailAddress = LinkedListMultimap.create();
 

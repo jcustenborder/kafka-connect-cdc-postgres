@@ -3,7 +3,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 import io.confluent.kafka.connect.cdc.Change;
 import org.apache.kafka.connect.data.Schema;
 
-public class PostgreSQLColumnValue implements Change.ColumnValue {
+class PostgreSQLColumnValue implements Change.ColumnValue {
   String columnName;
   Schema schema;
   Object value;

@@ -1,37 +1,57 @@
 {
-  "location" : "0/163C1A0",
+  "location" : "0/163C1B8",
   "xid" : 655,
-  "timestamp" : 1482166125639,
-  "data" : "table public.decimal_50_49: INSERT: id[bigint]:1 value[numeric]:0.0000000000000000000000000000005637853559501844534",
+  "timestamp" : 1482181656867,
+  "data" : "table public.decimal_50_49: INSERT: id[bigint]:1 value[numeric]:0.0000000000000000000000000000005541043262617258217",
+  "tableMetadata" : {
+    "schemaName" : "public",
+    "tableName" : "decimal_50_49",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT64",
+        "isOptional" : true
+      },
+      "value" : {
+        "name" : "org.apache.kafka.connect.data.Decimal",
+        "type" : "BYTES",
+        "version" : 1,
+        "parameters" : {
+          "scale" : "49"
+        },
+        "isOptional" : true
+      }
+    }
+  },
   "expected" : {
     "metadata" : { },
     "sourcePartition" : { },
     "sourceOffset" : {
-      "testing" : "0/163C1A0"
+      "testing" : "0/163C1B8"
     },
     "schemaName" : "public",
     "tableName" : "decimal_50_49",
     "changeType" : "INSERT",
-    "timestamp" : 1482166125639,
+    "timestamp" : 1482181656867,
     "keyColumns" : [ {
       "columnName" : "id",
       "value" : 1,
-      "jsonConnectSchema" : {
-        "type" : "INT32",
+      "schema" : {
+        "type" : "INT64",
         "isOptional" : true
       }
     } ],
     "valueColumns" : [ {
       "columnName" : "id",
       "value" : 1,
-      "jsonConnectSchema" : {
-        "type" : "INT32",
+      "schema" : {
+        "type" : "INT64",
         "isOptional" : true
       }
     }, {
       "columnName" : "value",
-      "value" : -9.72827530889770769E-32,
-      "jsonConnectSchema" : {
+      "value" : -6.891143327030683766E-31,
+      "schema" : {
         "name" : "org.apache.kafka.connect.data.Decimal",
         "type" : "BYTES",
         "version" : 1,
@@ -41,6 +61,5 @@
         "isOptional" : true
       }
     } ]
-  },
-  "keyColumns" : [ "id" ]
+  }
 }

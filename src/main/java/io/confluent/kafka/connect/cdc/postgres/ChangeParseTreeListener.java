@@ -1,6 +1,7 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
 import io.confluent.kafka.connect.cdc.Change;
+import org.antlr.v4.runtime.tree.ErrorNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +68,13 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
       log.debug("enterTablename - {}", ctx.toStringTree());
     }
     this.tableName = ctx.Identifier().getText();
+  }
+
+  @Override
+  public void visitErrorNode(ErrorNode node) {
+
+
+    super.visitErrorNode(node);
   }
 
   public PostgreSQLChange change() {

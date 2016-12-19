@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import org.apache.kafka.common.utils.Time;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -25,6 +26,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import static io.confluent.kafka.connect.cdc.ChangeAssertions.assertChange;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -32,14 +34,14 @@ import static org.mockito.Mockito.when;
 public class ChangeBuilderTest {
   static final String SLOT_NAME = "testing";
   ChangeBuilder changeBuilder;
-  KeyMetadataProvider keyMetadataProvider;
+  TableMetadataProvider tableMetadataProvider;
   Time time;
 
   @BeforeEach
   public void before() {
-    this.keyMetadataProvider = mock(KeyMetadataProvider.class);
+    this.tableMetadataProvider = mock(TableMetadataProvider.class);
     this.time = mock(Time.class);
-    this.changeBuilder = new ChangeBuilder(this.keyMetadataProvider, time, SLOT_NAME);
+    this.changeBuilder = new ChangeBuilder(this.tableMetadataProvider, time, SLOT_NAME);
   }
 
   ResultSet mockResultSet(String location, Long xid, String data) throws SQLException {
@@ -55,9 +57,11 @@ public class ChangeBuilderTest {
   }
 
   void test(TestData testData) throws SQLException {
+    assertNotNull(testData, "testData cannot be null");
+    assertNotNull(testData.tableMetadata, "testData.tableMetadata cannot be null");
     ResultSet resultSet = mockResultSet(testData);
     when(this.time.milliseconds()).thenReturn(testData.timestamp);
-    when(this.keyMetadataProvider.keys(testData.expected.schemaName(), testData.expected.tableName())).thenReturn(testData.keyColumns);
+    when(this.tableMetadataProvider.tableMetadata(testData.tableMetadata.schemaName, testData.tableMetadata.tableName)).thenReturn(testData.tableMetadata);
     PostgreSQLChange actual = this.changeBuilder.build(resultSet);
     assertChange(testData.expected, actual);
   }
@@ -93,7 +97,7 @@ public class ChangeBuilderTest {
     return testDatas.stream().map(data -> dynamicTest(data.name, () -> test(data)));
   }
 
-//  @Disabled
+  @Disabled
   @Test
   public void decimalTestCase() throws IOException {
     final int precision = 50;
