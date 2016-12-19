@@ -9,13 +9,13 @@ import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.person.Person;
 import io.confluent.kafka.connect.cdc.postgres.docker.DockerUtils;
 import org.flywaydb.core.Flyway;
-import org.junit.After;
-import org.junit.AfterClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.ClassRule;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,14 +26,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
 
-@Ignore
+@Disabled
 public class PostgreSQLSourceTaskTest {
   @ClassRule
   public final static DockerComposeRule docker = DockerUtils.postgresql();
   public static Container postgreSQLContainer;
   public static String jdbcUrl;
 
-  @BeforeClass
+  @BeforeAll
   public static void beforeClass() throws SQLException, InterruptedException, IOException {
     postgreSQLContainer = DockerUtils.postgreSQL(docker);
     jdbcUrl = DockerUtils.jdbcUrl(docker);
@@ -105,13 +105,13 @@ public class PostgreSQLSourceTaskTest {
 
   }
 
-  @After
+  @AfterEach
   public void stop() {
     this.task.stop();
   }
 
-  @AfterClass
-  public static void afterClass() {
+  @AfterAll
+  public static void dockerCleanup() {
     docker.after();
   }
 

@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import io.confluent.kafka.connect.cdc.Change;
 import org.hamcrest.core.IsEqual;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
