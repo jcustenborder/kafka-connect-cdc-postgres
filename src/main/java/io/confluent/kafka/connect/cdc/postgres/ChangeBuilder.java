@@ -11,17 +11,17 @@ import java.sql.SQLException;
 
 class ChangeBuilder {
   final String slotName;
-  ChangeParseTreeListener listener = new ChangeParseTreeListener();
+
 
   ChangeBuilder(String slotName) {
     this.slotName = slotName;
   }
 
-  Change build(ResultSet results) throws SQLException {
+  PostgreSQLChange build(ResultSet results) throws SQLException {
     String location = results.getString(1);
     Long xid = results.getLong(2);
     String data = results.getString(3);
-
+    ChangeParseTreeListener listener = new ChangeParseTreeListener();
     CharStream inputStream = new ANTLRInputStream(data);
     PgLogicalDecodingLexer lexer = new PgLogicalDecodingLexer(inputStream);
     CommonTokenStream tokens = new CommonTokenStream(lexer);

@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import io.confluent.kafka.connect.cdc.Change;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ class PostgreSQLChange implements Change {
   String schemaName;
   ChangeType changeType;
   Map<String, Object> sourceOffset;
+  Map<String, String> metadata = new LinkedHashMap<>();
+  long timestamp;
   static final Map<String, Object> SOURCE_PARTITION = ImmutableMap.of();
 
   List<ColumnValue> keyColumns = new ArrayList<>();
@@ -21,7 +24,7 @@ class PostgreSQLChange implements Change {
 
   @Override
   public Map<String, String> metadata() {
-    return null;
+    return this.metadata;
   }
 
   @Override
@@ -61,7 +64,7 @@ class PostgreSQLChange implements Change {
 
   @Override
   public long timestamp() {
-    return 0;
+    return this.timestamp;
   }
 
   void tableName(String value) {

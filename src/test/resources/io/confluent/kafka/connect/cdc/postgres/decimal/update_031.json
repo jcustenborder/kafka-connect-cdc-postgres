@@ -1,0 +1,45 @@
+{
+  "location" : "0/1639238",
+  "xid" : 618,
+  "timestamp" : 1482141622775,
+  "data" : "table public.decimal_50_30: UPDATE: id[bigint]:1 value[numeric]:0.000000000004267064155991744941",
+  "expected" : {
+    "metadata" : { },
+    "sourcePartition" : { },
+    "sourceOffset" : {
+      "testing" : "0/1639238"
+    },
+    "schemaName" : "public",
+    "tableName" : "decimal_50_30",
+    "changeType" : "UPDATE",
+    "timestamp" : 1482141622775,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "value" : 1,
+      "jsonConnectSchema" : {
+        "type" : "INT32",
+        "isOptional" : true
+      }
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "value" : 1,
+      "jsonConnectSchema" : {
+        "type" : "INT32",
+        "isOptional" : true
+      }
+    }, {
+      "columnName" : "value",
+      "value" : 8.497066744495244722E-12,
+      "jsonConnectSchema" : {
+        "name" : "org.apache.kafka.connect.data.Decimal",
+        "type" : "BYTES",
+        "version" : 1,
+        "parameters" : {
+          "scale" : "30"
+        },
+        "isOptional" : true
+      }
+    } ]
+  }
+}
