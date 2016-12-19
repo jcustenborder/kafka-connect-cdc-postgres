@@ -2,6 +2,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.base.Preconditions;
 import io.confluent.kafka.connect.cdc.Change;
+import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CharStream;

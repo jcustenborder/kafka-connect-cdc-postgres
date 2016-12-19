@@ -70,12 +70,20 @@ insertOp
 	)*
 ;
 
-updateOp
+updateByKeyOp
 :
 	'UPDATE: old-key: '
 	(
 		oldKeyValuePair
 	)* 'new-tuple: '
+	(
+		newKeyValuePair
+	)*
+;
+
+updateOp
+:
+	'UPDATE: '
 	(
 		newKeyValuePair
 	)*

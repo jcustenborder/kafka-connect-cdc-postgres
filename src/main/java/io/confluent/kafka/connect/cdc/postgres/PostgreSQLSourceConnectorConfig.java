@@ -15,43 +15,26 @@
  */
 package io.confluent.kafka.connect.cdc.postgres;
 
-import io.confluent.kafka.connect.cdc.CDCSourceConnectorConfig;
+import io.confluent.kafka.connect.cdc.JDBCCDCSourceConnectorConfig;
 import org.apache.kafka.common.config.ConfigDef;
 
 import java.util.List;
 import java.util.Map;
 
-public class PostgreSQLSourceConnectorConfig extends CDCSourceConnectorConfig {
+public class PostgreSQLSourceConnectorConfig extends JDBCCDCSourceConnectorConfig {
 
-  public static final String JDBC_USERNAME_CONF = "jdbc.username";
-  public static final String JDBC_PASSWORD_CONF = "jdbc.password";
-  public static final String JDBC_URL_CONF = "jdbc.url";
   public static final String POSTGRES_REPLICATION_SLOT_NAMES_CONF = "postgres.replication.slot.names";
   static final String POSTGRES_REPLICATION_SLOT_NAMES_DOC = "THe replication slot names to connect to.";
-  static final String JDBC_USERNAME_DOC = "JDBC Username to connect to Oracle with.";
-  static final String JDBC_PASSWORD_DOC = "JDBC Password to connect to Oracle with.";
-  static final String JDBC_URL_DOC = "JDBC Url to connect to oracle with. You should not inline your username and password.";
 
-  public final String jdbcUrl;
-  public final String jdbcUsername;
-  public final String jdbcPassword;
   public final List<String> replicationSlotNames;
 
   public PostgreSQLSourceConnectorConfig(Map<String, String> parsedConfig) {
     super(config(), parsedConfig);
-
-    this.jdbcUrl = this.getString(JDBC_URL_CONF);
-    this.jdbcUsername = this.getString(JDBC_USERNAME_CONF);
-    this.jdbcPassword = this.getPassword(JDBC_PASSWORD_CONF).value();
     this.replicationSlotNames = this.getList(POSTGRES_REPLICATION_SLOT_NAMES_CONF);
-
   }
 
   public static ConfigDef config() {
-    return CDCSourceConnectorConfig.config()
-        .define(JDBC_URL_CONF, ConfigDef.Type.STRING, ConfigDef.Importance.HIGH, JDBC_URL_DOC)
-        .define(JDBC_USERNAME_CONF, ConfigDef.Type.STRING, ConfigDef.Importance.HIGH, JDBC_USERNAME_DOC)
-        .define(JDBC_PASSWORD_CONF, ConfigDef.Type.PASSWORD, ConfigDef.Importance.HIGH, JDBC_PASSWORD_DOC)
+    return JDBCCDCSourceConnectorConfig.config()
         .define(POSTGRES_REPLICATION_SLOT_NAMES_CONF, ConfigDef.Type.LIST, ConfigDef.Importance.HIGH, POSTGRES_REPLICATION_SLOT_NAMES_DOC);
   }
 }

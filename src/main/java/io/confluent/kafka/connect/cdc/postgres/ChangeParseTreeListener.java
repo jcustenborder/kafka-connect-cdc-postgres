@@ -28,6 +28,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
     for(PgLogicalDecodingParser.NewKeyValuePairContext kvp:a) {
       PostgreSQLColumnValue columnValue = new PostgreSQLColumnValue();
       columnValue.columnName = kvp.columnname().Identifier().getText();
+
       this.change.valueColumns.add(columnValue);
     }
   }
@@ -41,6 +42,13 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
     this.change.changeType(Change.ChangeType.UPDATE);
     this.change.schemaName(schemaName);
     this.change.tableName(tableName);
+
+    List<PgLogicalDecodingParser.NewKeyValuePairContext> a = ctx.newKeyValuePair();
+    for(PgLogicalDecodingParser.NewKeyValuePairContext kvp:a) {
+      PostgreSQLColumnValue columnValue = new PostgreSQLColumnValue();
+      columnValue.columnName = kvp.columnname().Identifier().getText();
+      this.change.valueColumns.add(columnValue);
+    }
   }
 
   @Override

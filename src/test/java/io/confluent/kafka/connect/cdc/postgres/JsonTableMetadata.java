@@ -1,6 +1,7 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.apache.kafka.connect.data.Schema;
 
 import java.util.LinkedHashMap;

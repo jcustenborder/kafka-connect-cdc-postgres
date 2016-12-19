@@ -1,6 +1,7 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
 import io.confluent.kafka.connect.cdc.CDCSourceTask;
+import io.confluent.kafka.connect.cdc.JDBCUtils;
 import org.apache.kafka.connect.errors.DataException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class PostgreSQLSourceTask extends CDCSourceTask<PostgreSQLSourceConnecto
   public void start(Map<String, String> map) {
     super.start(map);
 
-    this.connection = Utils.openConnection(this.config);
+    this.connection = JDBCUtils.openConnection(this.config);
     this.slot = this.config.replicationSlotNames.get(0);
     createLogicalReplicationSlot();
     this.getChangesStatement = createChangesStatement();
@@ -66,7 +67,7 @@ public class PostgreSQLSourceTask extends CDCSourceTask<PostgreSQLSourceConnecto
 
   @Override
   public void stop() {
-    Utils.closeConnection(this.connection);
+    JDBCUtils.closeConnection(this.connection);
   }
 
   @Override

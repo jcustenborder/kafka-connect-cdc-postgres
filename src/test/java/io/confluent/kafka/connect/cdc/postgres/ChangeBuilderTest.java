@@ -2,6 +2,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
+import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.apache.kafka.common.utils.Time;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
