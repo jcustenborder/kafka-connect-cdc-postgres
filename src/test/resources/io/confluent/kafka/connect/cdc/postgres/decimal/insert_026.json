@@ -1,18 +1,18 @@
 {
-  "location" : "0/1638488",
+  "location" : "0/16384A0",
   "xid" : 607,
-  "timestamp" : 1482141622765,
-  "data" : "table public.decimal_50_25: INSERT: id[bigint]:1 value[numeric]:0.0000002317602153657368783",
+  "timestamp" : 1482166125602,
+  "data" : "table public.decimal_50_25: INSERT: id[bigint]:1 value[numeric]:-0.0000007921546178411699591",
   "expected" : {
     "metadata" : { },
     "sourcePartition" : { },
     "sourceOffset" : {
-      "testing" : "0/1638488"
+      "testing" : "0/16384A0"
     },
     "schemaName" : "public",
     "tableName" : "decimal_50_25",
     "changeType" : "INSERT",
-    "timestamp" : 1482141622765,
+    "timestamp" : 1482166125602,
     "keyColumns" : [ {
       "columnName" : "id",
       "value" : 1,
@@ -30,7 +30,7 @@
       }
     }, {
       "columnName" : "value",
-      "value" : -4.198371061251004856E-7,
+      "value" : 1.138723753719394727E-7,
       "jsonConnectSchema" : {
         "name" : "org.apache.kafka.connect.data.Decimal",
         "type" : "BYTES",
@@ -41,5 +41,6 @@
         "isOptional" : true
       }
     } ]
-  }
+  },
+  "keyColumns" : [ "id" ]
 }

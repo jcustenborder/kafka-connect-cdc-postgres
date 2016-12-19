@@ -36,7 +36,7 @@ public class PostgreSQLSourceTask extends CDCSourceTask<PostgreSQLSourceConnecto
   }
 
   PreparedStatement createChangesStatement() {
-    final String SQL = "SELECT * FROM pg_logical_slot_get_changes(?, ?, ?, 'skip-empty-xacts', '1', 'force-binary', '0', 'include-timestamp', '0', 'include-xids', '0')";
+    final String SQL = "SELECT * FROM pg_logical_slot_get_changes(?, ?, ?, 'skip-empty-xacts', '1', 'force-binary', '0', 'include-timestamp', '0', 'include-xids', '1')";
     try {
       return this.connection.prepareStatement(SQL);
     } catch (SQLException ex) {

@@ -79,7 +79,7 @@ public class PostgreSQLSourceTaskTest {
 
 
 
-//  @Disabled
+  @Disabled
   @Test
   public void decimalTestCase() throws IOException, SQLException {
     final int precision = 50;
@@ -147,6 +147,7 @@ public class PostgreSQLSourceTaskTest {
           int scale = Integer.parseInt(matcher.group(3));
 
           testData.expected = new JsonChange();
+          testData.keyColumns.add("id");
           Collection<BigDecimal> values = keyToValues.get(tableName.toUpperCase());
           BigDecimal expectedValue=null;
           for(BigDecimal v:values){
