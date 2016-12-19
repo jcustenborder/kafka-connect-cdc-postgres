@@ -3,7 +3,6 @@ package io.confluent.kafka.connect.cdc.postgres;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableMap;
 import io.confluent.kafka.connect.cdc.Change;
-import io.confluent.kafka.connect.cdc.ColumnValue;
 
 import java.util.ArrayList;
 import java.util.List;

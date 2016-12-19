@@ -1,9 +1,9 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
-import io.confluent.kafka.connect.cdc.ColumnValue;
+import io.confluent.kafka.connect.cdc.Change;
 import org.apache.kafka.connect.data.Schema;
 
-public class PostgreSQLColumnValue implements ColumnValue {
+public class PostgreSQLColumnValue implements Change.ColumnValue {
   String columnName;
   Schema schema;
   Object value;
@@ -25,11 +25,11 @@ public class PostgreSQLColumnValue implements ColumnValue {
 
   @Override
   public boolean equals(Object obj) {
-    if (!(obj instanceof ColumnValue)) {
+    if (!(obj instanceof Change.ColumnValue)) {
       return false;
     }
 
-    ColumnValue that = (ColumnValue) obj;
+    Change.ColumnValue that = (Change.ColumnValue) obj;
     return
         this.columnName().equals(that.columnName()) &&
             this.schema.type().equals(that.schema().type()) &&
