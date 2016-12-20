@@ -15,13 +15,13 @@
  */
 package io.confluent.kafka.connect.cdc.postgres;
 
-import io.confluent.kafka.connect.cdc.JDBCCDCSourceConnectorConfig;
+import io.confluent.kafka.connect.cdc.JdbcCDCSourceConnectorConfig;
 import org.apache.kafka.common.config.ConfigDef;
 
 import java.util.List;
 import java.util.Map;
 
-public class PostgreSQLSourceConnectorConfig extends JDBCCDCSourceConnectorConfig {
+public class PostgreSQLSourceConnectorConfig extends JdbcCDCSourceConnectorConfig {
 
   public static final String POSTGRES_REPLICATION_SLOT_NAMES_CONF = "postgres.replication.slot.names";
   static final String POSTGRES_REPLICATION_SLOT_NAMES_DOC = "THe replication slot names to connect to.";
@@ -34,7 +34,7 @@ public class PostgreSQLSourceConnectorConfig extends JDBCCDCSourceConnectorConfi
   }
 
   public static ConfigDef config() {
-    return JDBCCDCSourceConnectorConfig.config()
+    return JdbcCDCSourceConnectorConfig.config()
         .define(POSTGRES_REPLICATION_SLOT_NAMES_CONF, ConfigDef.Type.LIST, ConfigDef.Importance.HIGH, POSTGRES_REPLICATION_SLOT_NAMES_DOC);
   }
 }

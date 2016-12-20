@@ -2,6 +2,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.confluent.kafka.connect.cdc.JsonChange;
+import io.confluent.kafka.connect.cdc.JsonTableMetadata;
 import io.confluent.kafka.connect.cdc.ObjectMapperFactory;
 
 import java.io.File;

@@ -62,7 +62,7 @@ public class ChangeBuilderTest {
     assertNotNull(testData.tableMetadata, "testData.tableMetadata cannot be null");
     ResultSet resultSet = mockResultSet(testData);
     when(this.time.milliseconds()).thenReturn(testData.timestamp);
-    when(this.tableMetadataProvider.tableMetadata(testData.tableMetadata.schemaName, testData.tableMetadata.tableName)).thenReturn(testData.tableMetadata);
+    when(this.tableMetadataProvider.tableMetadata(testData.tableMetadata.schemaName(), testData.tableMetadata.tableName())).thenReturn(testData.tableMetadata);
     PostgreSQLChange actual = this.changeBuilder.build(resultSet);
     assertChange(testData.expected, actual);
   }

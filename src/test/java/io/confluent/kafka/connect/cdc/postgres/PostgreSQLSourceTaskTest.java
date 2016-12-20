@@ -11,6 +11,7 @@ import io.codearte.jfairy.producer.person.Person;
 import io.confluent.kafka.connect.cdc.Change;
 import io.confluent.kafka.connect.cdc.JsonChange;
 import io.confluent.kafka.connect.cdc.JsonColumnValue;
+import io.confluent.kafka.connect.cdc.JsonTableMetadata;
 import io.confluent.kafka.connect.cdc.TestDataUtils;
 import io.confluent.kafka.connect.cdc.postgres.docker.DockerUtils;
 import org.apache.kafka.connect.data.Decimal;
@@ -43,6 +44,7 @@ public class PostgreSQLSourceTaskTest {
   public final static DockerComposeRule docker = DockerUtils.postgresql();
   public static Container postgreSQLContainer;
   public static String jdbcUrl;
+  PostgreSQLSourceTask task;
 
   @BeforeAll
   public static void beforeClass() throws SQLException, InterruptedException, IOException {
@@ -59,7 +61,10 @@ public class PostgreSQLSourceTaskTest {
     flyway.migrate();
   }
 
-  PostgreSQLSourceTask task;
+  @AfterAll
+  public static void dockerCleanup() {
+    docker.after();
+  }
 
   @BeforeEach
   public void start() {
@@ -73,7 +78,6 @@ public class PostgreSQLSourceTaskTest {
     this.task = new PostgreSQLSourceTask();
     this.task.start(settings);
   }
-
 
   @Disabled
   @Test
@@ -146,10 +150,10 @@ public class PostgreSQLSourceTaskTest {
           testData.expected = new JsonChange();
           testData.tableMetadata = new JsonTableMetadata();
           testData.tableMetadata.keyColumns().add("id");
-          testData.tableMetadata.schemaName = "public";
-          testData.tableMetadata.tableName = tableName;
-          testData.tableMetadata.columnSchemas.put("id", Schema.OPTIONAL_INT64_SCHEMA);
-          testData.tableMetadata.columnSchemas.put("value", valueSchema);
+          testData.tableMetadata.schemaName("public");
+          testData.tableMetadata.tableName(tableName);
+          testData.tableMetadata.columnSchemas().put("id", Schema.OPTIONAL_INT64_SCHEMA);
+          testData.tableMetadata.columnSchemas().put("value", valueSchema);
 
           Collection<BigDecimal> values = keyToValues.get(tableName.toUpperCase());
           BigDecimal expectedValue = null;
@@ -233,11 +237,6 @@ public class PostgreSQLSourceTaskTest {
   @AfterEach
   public void stop() {
     this.task.stop();
-  }
-
-  @AfterAll
-  public static void dockerCleanup() {
-    docker.after();
   }
 
 }

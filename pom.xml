@@ -32,19 +32,14 @@
             <artifactId>antlr4-runtime</artifactId>
             <version>${antlr.version}</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>4.0.3</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.codearte.jfairy</groupId>
-            <artifactId>jfairy</artifactId>
-            <version>0.5.5</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>io.confluent.kafka.connect</groupId>
             <artifactId>kafka-connect-cdc-test</artifactId>
