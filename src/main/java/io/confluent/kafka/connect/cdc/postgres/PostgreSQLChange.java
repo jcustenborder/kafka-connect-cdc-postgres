@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 class PostgreSQLChange implements Change {
+  String databaseName;
   String tableName;
   String schemaName;
   ChangeType changeType;
@@ -35,6 +36,11 @@ class PostgreSQLChange implements Change {
   @Override
   public Map<String, Object> sourceOffset() {
     return this.sourceOffset;
+  }
+
+  @Override
+  public String databaseName() {
+    return this.databaseName;
   }
 
   @Override
