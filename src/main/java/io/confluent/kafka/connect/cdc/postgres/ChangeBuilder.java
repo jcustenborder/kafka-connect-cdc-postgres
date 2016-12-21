@@ -53,7 +53,8 @@ class ChangeBuilder {
     change.sourceOffset(this.slotName, location);
     long timestamp = this.time.milliseconds();
     change.timestamp = timestamp;
-    TableMetadataProvider.TableMetadata tableMetadata = this.tableMetadataProvider.tableMetadata(change.schemaName, change.tableName);
+    //TODO: Check this out. It looks really sketchy
+    TableMetadataProvider.TableMetadata tableMetadata = this.tableMetadataProvider.tableMetadata("", change.schemaName, change.tableName);
 
     for (Change.ColumnValue c : change.valueColumns) {
       PostgreSQLColumnValue columnValue = (PostgreSQLColumnValue) c;
