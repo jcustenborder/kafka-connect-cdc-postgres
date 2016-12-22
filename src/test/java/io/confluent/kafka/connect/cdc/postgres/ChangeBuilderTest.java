@@ -2,6 +2,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
+import io.confluent.kafka.connect.cdc.ChangeKey;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.apache.kafka.common.utils.Time;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,7 +63,7 @@ public class ChangeBuilderTest {
     assertNotNull(testData.tableMetadata, "testData.tableMetadata cannot be null");
     ResultSet resultSet = mockResultSet(testData);
     when(this.time.milliseconds()).thenReturn(testData.timestamp);
-    when(this.tableMetadataProvider.tableMetadata(testData.tableMetadata.databaseName(), testData.tableMetadata.schemaName(), testData.tableMetadata.tableName())).thenReturn(testData.tableMetadata);
+    when(this.tableMetadataProvider.tableMetadata(new ChangeKey(testData.tableMetadata.databaseName(), testData.tableMetadata.schemaName(), testData.tableMetadata.tableName()))).thenReturn(testData.tableMetadata);
     PostgreSQLChange actual = this.changeBuilder.build(resultSet);
     assertChange(testData.expected, actual);
   }

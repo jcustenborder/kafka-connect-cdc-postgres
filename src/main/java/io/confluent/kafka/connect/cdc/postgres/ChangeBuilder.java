@@ -2,6 +2,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.base.Preconditions;
 import io.confluent.kafka.connect.cdc.Change;
+import io.confluent.kafka.connect.cdc.ChangeKey;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
@@ -54,7 +55,7 @@ class ChangeBuilder {
     long timestamp = this.time.milliseconds();
     change.timestamp = timestamp;
     //TODO: Check this out. It looks really sketchy
-    TableMetadataProvider.TableMetadata tableMetadata = this.tableMetadataProvider.tableMetadata("", change.schemaName, change.tableName);
+    TableMetadataProvider.TableMetadata tableMetadata = this.tableMetadataProvider.tableMetadata(new ChangeKey("", change.schemaName, change.tableName));
 
     for (Change.ColumnValue c : change.valueColumns) {
       PostgreSQLColumnValue columnValue = (PostgreSQLColumnValue) c;
