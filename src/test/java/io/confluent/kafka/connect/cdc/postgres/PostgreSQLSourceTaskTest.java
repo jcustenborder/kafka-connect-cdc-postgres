@@ -10,7 +10,6 @@ import io.codearte.jfairy.Fairy;
 import io.codearte.jfairy.producer.person.Person;
 import io.confluent.kafka.connect.cdc.Change;
 import io.confluent.kafka.connect.cdc.JsonChange;
-import io.confluent.kafka.connect.cdc.JsonColumnValue;
 import io.confluent.kafka.connect.cdc.JsonTableMetadata;
 import io.confluent.kafka.connect.cdc.TestDataUtils;
 import io.confluent.kafka.connect.cdc.postgres.docker.DockerUtils;
@@ -166,9 +165,9 @@ public class PostgreSQLSourceTaskTest {
           testData.expected.schemaName("public");
           testData.expected.tableName(tableName);
           testData.expected.sourceOffset().put("testing", location);
-          testData.expected.keyColumns().add(new JsonColumnValue("id", Schema.OPTIONAL_INT64_SCHEMA, 1));
-          testData.expected.valueColumns().add(new JsonColumnValue("id", Schema.OPTIONAL_INT64_SCHEMA, 1));
-          testData.expected.valueColumns().add(new JsonColumnValue("value", valueSchema, expectedValue));
+          testData.expected.keyColumns().add(new JsonChange.JsonColumnValue("id", Schema.OPTIONAL_INT64_SCHEMA, 1));
+          testData.expected.valueColumns().add(new JsonChange.JsonColumnValue("id", Schema.OPTIONAL_INT64_SCHEMA, 1));
+          testData.expected.valueColumns().add(new JsonChange.JsonColumnValue("value", valueSchema, expectedValue));
 
           if (changeType.equals("UPDATE")) {
             update++;
