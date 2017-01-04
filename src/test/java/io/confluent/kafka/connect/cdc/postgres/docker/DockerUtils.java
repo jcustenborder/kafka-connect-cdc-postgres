@@ -10,8 +10,8 @@ public class DockerUtils {
 //      "jdbc:oracle:oci:@$HOST:$EXTERNAL_PORT";
 
   public static final String POSTGRES_CONTAINER = "postgres";
-  public static final String USERNAME="postgres";
-  public static final String PASSWORD="password";
+  public static final String USERNAME = "postgres";
+  public static final String PASSWORD = "password";
 
   public static DockerComposeRule postgresql() {
     return DockerComposeRule.builder()

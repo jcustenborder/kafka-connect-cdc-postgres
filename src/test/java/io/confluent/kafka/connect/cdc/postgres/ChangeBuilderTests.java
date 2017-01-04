@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ChangeBuilderTest {
+public class ChangeBuilderTests {
   static final String SLOT_NAME = "testing";
   ChangeBuilder changeBuilder;
   TableMetadataProvider tableMetadataProvider;
@@ -69,6 +69,7 @@ public class ChangeBuilderTest {
   }
 
 
+  @Disabled
   @TestFactory
   public Stream<DynamicTest> build() throws IOException {
     String packageName = this.getClass().getPackage().getName();
