@@ -1,16 +1,19 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.collect.ImmutableMap;
+import io.confluent.kafka.connect.cdc.Integration;
 import io.confluent.kafka.connect.cdc.docker.DockerCompose;
 import io.confluent.kafka.connect.cdc.docker.DockerFormatString;
 import io.confluent.kafka.connect.cdc.postgres.docker.DockerUtils;
 import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSQLClusterHealthCheck;
+import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
+@Category(Integration.class)
 @DockerCompose(dockerComposePath = PostgreSQLConstants.DOCKER_COMPOSE_FILE, clusterHealthCheck = PostgreSQLClusterHealthCheck.class)
 public class PostgreSQLSourceTaskTests extends PostgreSQLTests {
   PostgreSQLSourceTask task;
