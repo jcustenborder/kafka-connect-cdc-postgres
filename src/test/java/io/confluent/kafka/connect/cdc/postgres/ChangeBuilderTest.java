@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ChangeBuilderTests {
+public class ChangeBuilderTest {
   static final String SLOT_NAME = "testing";
   ChangeBuilder changeBuilder;
   TableMetadataProvider tableMetadataProvider;
