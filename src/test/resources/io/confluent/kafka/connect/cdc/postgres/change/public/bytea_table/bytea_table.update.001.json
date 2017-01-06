@@ -1,0 +1,79 @@
+{
+  "location" : "0/170D6F8",
+  "xid" : 573,
+  "data" : "table public.bytea_table: UPDATE: id[bigint]:2 value[bytea]:'\\xdeadbeefdeadbeef'",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "bytea_table",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT64",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : {
+        "type" : "BYTES",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "value"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/170D6F8",
+      "xid" : "573"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/170D6F8"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "bytea_table",
+    "changeType" : "UPDATE",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT64",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 2
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT64",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 2
+    }, {
+      "columnName" : "value",
+      "schema" : {
+        "type" : "BYTES",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "value"
+        },
+        "isOptional" : true
+      },
+      "value" : null
+    } ]
+  }
+}

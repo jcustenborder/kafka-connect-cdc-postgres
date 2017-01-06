@@ -1,0 +1,198 @@
+{
+  "location" : "0/172A698",
+  "xid" : 591,
+  "data" : "table public.users: INSERT: id[integer]:236 first_name[character varying]:'Aurora' last_name[character varying]:'Mcneil' email_address[character varying]:'risus.Donec@iaculisneceleifend.co.uk' street_address[character varying]:'P.O. Box 346, 5824 Molestie Avenue' city[character varying]:'Turgutlu' region[character varying]:'Manisa' country[character varying]:'Yemen' company[character varying]:'Et Lacinia Vitae Corp.'",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "first_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "last_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "email_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "street_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "city" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "region" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "country" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "company" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/172A698",
+      "xid" : "591"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/172A698"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "changeType" : "INSERT",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 236
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 236
+    }, {
+      "columnName" : "first_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Aurora"
+    }, {
+      "columnName" : "last_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Mcneil"
+    }, {
+      "columnName" : "email_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "risus.Donec@iaculisneceleifend.co.uk"
+    }, {
+      "columnName" : "street_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "P.O. Box 346, 5824 Molestie Avenue"
+    }, {
+      "columnName" : "city",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "value" : "Turgutlu"
+    }, {
+      "columnName" : "region",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "value" : "Manisa"
+    }, {
+      "columnName" : "country",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "value" : "Yemen"
+    }, {
+      "columnName" : "company",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      },
+      "value" : "Et Lacinia Vitae Corp."
+    } ]
+  }
+}

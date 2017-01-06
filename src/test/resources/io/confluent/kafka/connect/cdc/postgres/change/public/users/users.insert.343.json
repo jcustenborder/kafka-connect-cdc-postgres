@@ -1,0 +1,198 @@
+{
+  "location" : "0/1730FA0",
+  "xid" : 591,
+  "data" : "table public.users: INSERT: id[integer]:343 first_name[character varying]:'Reed' last_name[character varying]:'Carlson' email_address[character varying]:'urna@egestas.net' street_address[character varying]:'P.O. Box 997, 2320 Pharetra St.' city[character varying]:'Wanneroo' region[character varying]:'WA' country[character varying]:'Jordan' company[character varying]:'Malesuada Integer Id Ltd'",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "first_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "last_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "email_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "street_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "city" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "region" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "country" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "company" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/1730FA0",
+      "xid" : "591"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/1730FA0"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "changeType" : "INSERT",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 343
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 343
+    }, {
+      "columnName" : "first_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Reed"
+    }, {
+      "columnName" : "last_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Carlson"
+    }, {
+      "columnName" : "email_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "urna@egestas.net"
+    }, {
+      "columnName" : "street_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "P.O. Box 997, 2320 Pharetra St."
+    }, {
+      "columnName" : "city",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "value" : "Wanneroo"
+    }, {
+      "columnName" : "region",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "value" : "WA"
+    }, {
+      "columnName" : "country",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "value" : "Jordan"
+    }, {
+      "columnName" : "company",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      },
+      "value" : "Malesuada Integer Id Ltd"
+    } ]
+  }
+}

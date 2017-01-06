@@ -1,0 +1,198 @@
+{
+  "location" : "0/1733378",
+  "xid" : 591,
+  "data" : "table public.users: INSERT: id[integer]:380 first_name[character varying]:'Lenore' last_name[character varying]:'Kane' email_address[character varying]:'sem@convallisin.com' street_address[character varying]:'P.O. Box 855, 9293 Praesent Road' city[character varying]:'Crowsnest Pass' region[character varying]:'AB' country[character varying]:'Central African Republic' company[character varying]:'Gravida Consulting'",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "first_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "last_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "email_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "street_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "city" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "region" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "country" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "company" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/1733378",
+      "xid" : "591"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/1733378"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "changeType" : "INSERT",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 380
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 380
+    }, {
+      "columnName" : "first_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Lenore"
+    }, {
+      "columnName" : "last_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Kane"
+    }, {
+      "columnName" : "email_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "sem@convallisin.com"
+    }, {
+      "columnName" : "street_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "P.O. Box 855, 9293 Praesent Road"
+    }, {
+      "columnName" : "city",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "value" : "Crowsnest Pass"
+    }, {
+      "columnName" : "region",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "value" : "AB"
+    }, {
+      "columnName" : "country",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "value" : "Central African Republic"
+    }, {
+      "columnName" : "company",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      },
+      "value" : "Gravida Consulting"
+    } ]
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "location" : "0/1725F40",
+  "xid" : 591,
+  "data" : "table public.users: INSERT: id[integer]:164 first_name[character varying]:'Demetrius' last_name[character varying]:'Schneider' email_address[character varying]:'Phasellus.elit.pede@ante.edu' street_address[character varying]:'604-8900 Fusce Rd.' city[character varying]:'Belfast' region[character varying]:'Ulster' country[character varying]:'Ethiopia' company[character varying]:'Vestibulum Lorem Incorporated'",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "first_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "last_name" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "email_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "street_address" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "city" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "region" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "country" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "company" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/1725F40",
+      "xid" : "591"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/1725F40"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "users",
+    "changeType" : "INSERT",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 164
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 164
+    }, {
+      "columnName" : "first_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "first_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Demetrius"
+    }, {
+      "columnName" : "last_name",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "last_name"
+        },
+        "isOptional" : true
+      },
+      "value" : "Schneider"
+    }, {
+      "columnName" : "email_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "email_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "Phasellus.elit.pede@ante.edu"
+    }, {
+      "columnName" : "street_address",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "street_address"
+        },
+        "isOptional" : true
+      },
+      "value" : "604-8900 Fusce Rd."
+    }, {
+      "columnName" : "city",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "city"
+        },
+        "isOptional" : true
+      },
+      "value" : "Belfast"
+    }, {
+      "columnName" : "region",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "region"
+        },
+        "isOptional" : true
+      },
+      "value" : "Ulster"
+    }, {
+      "columnName" : "country",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "country"
+        },
+        "isOptional" : true
+      },
+      "value" : "Ethiopia"
+    }, {
+      "columnName" : "company",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "company"
+        },
+        "isOptional" : true
+      },
+      "value" : "Vestibulum Lorem Incorporated"
+    } ]
+  }
+}

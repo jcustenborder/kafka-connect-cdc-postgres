@@ -93,7 +93,7 @@ deleteOp
 :
 	'DELETE: '
 	(
-		oldKeyValuePair
+		newKeyValuePair
 	)*
 ;
 

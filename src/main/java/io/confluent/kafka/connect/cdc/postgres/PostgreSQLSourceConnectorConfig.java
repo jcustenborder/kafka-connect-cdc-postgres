@@ -15,26 +15,34 @@
  */
 package io.confluent.kafka.connect.cdc.postgres;
 
-import io.confluent.kafka.connect.cdc.JdbcCDCSourceConnectorConfig;
+import io.confluent.kafka.connect.cdc.ConnectionPoolDataSourceFactory;
+import io.confluent.kafka.connect.cdc.PooledCDCSourceConnectorConfig;
 import org.apache.kafka.common.config.ConfigDef;
 
-import java.util.List;
 import java.util.Map;
 
-public class PostgreSQLSourceConnectorConfig extends JdbcCDCSourceConnectorConfig {
+public class PostgreSQLSourceConnectorConfig extends PooledCDCSourceConnectorConfig {
 
-  public static final String POSTGRES_REPLICATION_SLOT_NAMES_CONF = "postgres.replication.slot.names";
-  static final String POSTGRES_REPLICATION_SLOT_NAMES_DOC = "THe replication slot names to connect to.";
+  public static final String POSTGRES_REPLICATION_SLOT_NAME_CONF = "postgres.replication.slot.name";
+  static final String POSTGRES_REPLICATION_SLOT_NAME_DOC = "THe replication slot names to connect to.";
 
-  public final List<String> replicationSlotNames;
+  public final String replicationSlotName;
 
   public PostgreSQLSourceConnectorConfig(Map<String, String> parsedConfig) {
     super(config(), parsedConfig);
-    this.replicationSlotNames = this.getList(POSTGRES_REPLICATION_SLOT_NAMES_CONF);
+    this.replicationSlotName = this.getString(POSTGRES_REPLICATION_SLOT_NAME_CONF);
+    this.dataSourceFactory = new PostgreSQLConnectionPoolDataSourceFactory(this);
   }
 
+  final PostgreSQLConnectionPoolDataSourceFactory dataSourceFactory;
+
   public static ConfigDef config() {
-    return JdbcCDCSourceConnectorConfig.config()
-        .define(POSTGRES_REPLICATION_SLOT_NAMES_CONF, ConfigDef.Type.LIST, ConfigDef.Importance.HIGH, POSTGRES_REPLICATION_SLOT_NAMES_DOC);
+    return PooledCDCSourceConnectorConfig.config()
+        .define(POSTGRES_REPLICATION_SLOT_NAME_CONF, ConfigDef.Type.STRING, ConfigDef.Importance.HIGH, POSTGRES_REPLICATION_SLOT_NAME_DOC);
+  }
+
+  @Override
+  public ConnectionPoolDataSourceFactory connectionPoolDataSourceFactory() {
+    return this.dataSourceFactory;
   }
 }
