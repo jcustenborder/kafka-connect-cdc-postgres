@@ -40,10 +40,10 @@ public class PostgreSqlChangeTest {
     PostgreSqlChange actual = builder.build(results);
     verify(testCase.time, atLeastOnce()).milliseconds();
 
-    if(log.isInfoEnabled()) {
+    if (log.isInfoEnabled()) {
       log.trace("expected= {}", testCase.expected);
       log.trace("testcase.expected.valuecolumns={}", testCase.expected.valueColumns());
-      for(Change.ColumnValue cv:testCase.expected.valueColumns()){
+      for (Change.ColumnValue cv : testCase.expected.valueColumns()) {
         log.trace("columnvalue[{}]={}", cv.columnName(), cv.value());
       }
     }

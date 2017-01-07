@@ -27,14 +27,13 @@ public class PostgreSqlSourceConnectorConfig extends PooledCDCSourceConnectorCon
   static final String POSTGRES_REPLICATION_SLOT_NAME_DOC = "THe replication slot names to connect to.";
 
   public final String replicationSlotName;
+  final PostgreSqlConnectionPoolDataSourceFactory dataSourceFactory;
 
   public PostgreSqlSourceConnectorConfig(Map<String, String> parsedConfig) {
     super(config(), parsedConfig);
     this.replicationSlotName = this.getString(POSTGRES_REPLICATION_SLOT_NAME_CONF);
     this.dataSourceFactory = new PostgreSqlConnectionPoolDataSourceFactory(this);
   }
-
-  final PostgreSqlConnectionPoolDataSourceFactory dataSourceFactory;
 
   public static ConfigDef config() {
     return PooledCDCSourceConnectorConfig.config()

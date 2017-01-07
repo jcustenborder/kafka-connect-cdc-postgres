@@ -14,9 +14,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parsers {
-  private static final Logger log = LoggerFactory.getLogger(Parsers.class);
   static final Pattern POINT_PATTERN = Pattern.compile("^\\((?<x>[\\d\\.-]+)\\s*,\\s*(?<y>[\\d\\.-]+)\\)$");
   static final Pattern POINT_PARTIAL_PATTERN = Pattern.compile("\\((?<x>[\\d\\.-]+)\\s*,\\s*(?<y>[\\d\\.-]+)\\)");
+  private static final Logger log = LoggerFactory.getLogger(Parsers.class);
 
   static void checkSchemaName(Schema schema, String name) {
     Preconditions.checkState(name.equals(schema.name()), "expected '%s' but received schema.name('%s').", name, schema.name());
@@ -27,6 +27,15 @@ public class Parsers {
     Matcher matcher = pattern.matcher(input);
     Preconditions.checkState(matcher.matches(), "'%s' does not match '%s'", input, pattern.pattern());
     return matcher;
+  }
+
+  private static void findPoints(Matcher matcher, Schema pointSchema, List<Struct> points) {
+    while (matcher.find()) {
+      double x = Double.parseDouble(matcher.group("x"));
+      double y = Double.parseDouble(matcher.group("y"));
+      Struct point = PostgreSqlConstants.pointStruct(pointSchema, x, y);
+      points.add(point);
+    }
   }
 
   public static class PointTypeParser implements TypeParser {
@@ -168,6 +177,7 @@ public class Parsers {
       return null;
     }
   }
+
   public static class LsegTypeParser implements TypeParser {
     @Override
     public Object parseString(String s, Schema schema) {
@@ -192,15 +202,6 @@ public class Parsers {
     @Override
     public Object parseJsonNode(JsonNode jsonNode, Schema schema) {
       return null;
-    }
-  }
-
-  private static void findPoints(Matcher matcher, Schema pointSchema, List<Struct> points) {
-    while (matcher.find()) {
-      double x = Double.parseDouble(matcher.group("x"));
-      double y = Double.parseDouble(matcher.group("y"));
-      Struct point = PostgreSqlConstants.pointStruct(pointSchema, x, y);
-      points.add(point);
     }
   }
 }

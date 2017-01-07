@@ -41,10 +41,10 @@ public class PolygonTypeParserTest {
     assertTrue(testCase.points.length % 2 == 0);
     List<Struct> actualPoints = actual.getArray("points");
 
-    int index=0;
+    int index = 0;
     for (int i = 0; i < testCase.points.length; i += 2) {
       final double x = testCase.points[i];
-      final double y = testCase.points[i+1];
+      final double y = testCase.points[i + 1];
       Struct actualPoint = actualPoints.get(index);
       assertEquals(x, actualPoint.get("x"), String.format("points[%d].x does not match", index));
       assertEquals(y, actualPoint.get("y"), String.format("points[%d].y does not match", index));

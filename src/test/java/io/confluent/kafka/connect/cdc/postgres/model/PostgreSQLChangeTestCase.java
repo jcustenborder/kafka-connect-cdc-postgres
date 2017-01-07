@@ -15,26 +15,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class PostgreSQLChangeTestCase implements NamedTest {
-  @JsonIgnore
-  private String name;
-
   public String location;
   public long xid;
   public String data;
   public Time time;
-
   public TableMetadataProvider.TableMetadata tableMetadata;
   public Change expected;
-
-  @Override
-  public void name(String name) {
-    this.name = name;
-  }
-
-  @Override
-  public String name() {
-    return this.name;
-  }
+  @JsonIgnore
+  private String name;
 
   public static void write(File file, PostgreSQLChangeTestCase change) throws IOException {
     try (OutputStream outputStream = new FileOutputStream(file)) {
@@ -54,5 +42,15 @@ public class PostgreSQLChangeTestCase implements NamedTest {
     try (FileInputStream inputStream = new FileInputStream(inputFile)) {
       return ObjectMapperFactory.instance.readValue(inputStream, PostgreSQLChangeTestCase.class);
     }
+  }
+
+  @Override
+  public void name(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public String name() {
+    return this.name;
   }
 }

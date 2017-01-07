@@ -30,17 +30,6 @@ import java.util.Map;
 import java.util.Set;
 
 class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<PostgreSqlSourceConnectorConfig> {
-  private static final Logger log = LoggerFactory.getLogger(PostgreSqlTableMetadataProvider.class);
-
-  public PostgreSqlTableMetadataProvider(PostgreSqlSourceConnectorConfig config, OffsetStorageReader offsetStorageReader) {
-    super(config, offsetStorageReader);
-  }
-
-  @Override
-  public Map<String, Object> startOffset(ChangeKey changeKey) throws SQLException {
-    return null;
-  }
-
   final static String COLUMN_SQL = "SELECT " +
       "  column_name, " +
       "  is_nullable, " +
@@ -54,8 +43,23 @@ class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<Postg
       "  lower(columns.table_name) = lower(?) " +
       "ORDER BY " +
       "  ordinal_position";
-
   static final Map<String, Schema.Type> TYPE_LOOKUP;
+  static final String PRIMARY_KEY_SQL = "SELECT\n" +
+      "  pg_attribute.attname as column_name\n" +
+      "FROM\n" +
+      "  pg_index,\n" +
+      "  pg_class,\n" +
+      "  pg_attribute,\n" +
+      "  pg_namespace\n" +
+      "WHERE\n" +
+      "  nspname = ? AND\n" +
+      "  pg_class.oid = ?::REGCLASS AND\n" +
+      "  indrelid = pg_class.oid AND\n" +
+      "  pg_class.relnamespace = pg_namespace.oid AND\n" +
+      "  pg_attribute.attrelid = pg_class.oid AND\n" +
+      "  pg_attribute.attnum = ANY (pg_index.indkey)\n" +
+      "  AND indisprimary";
+  private static final Logger log = LoggerFactory.getLogger(PostgreSqlTableMetadataProvider.class);
 
   static {
     Map<String, Schema.Type> typeLookup = new HashMap<>();
@@ -82,6 +86,10 @@ class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<Postg
     typeLookup.put("bytea", Schema.Type.BYTES);
 
     TYPE_LOOKUP = ImmutableMap.copyOf(typeLookup);
+  }
+
+  public PostgreSqlTableMetadataProvider(PostgreSqlSourceConnectorConfig config, OffsetStorageReader offsetStorageReader) {
+    super(config, offsetStorageReader);
   }
 
   static Schema buildColumnSchema(final String columnName, ResultSet resultSet) throws SQLException {
@@ -146,22 +154,6 @@ class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<Postg
     return builder.build();
   }
 
-  static final String PRIMARY_KEY_SQL = "SELECT\n" +
-      "  pg_attribute.attname as column_name\n" +
-      "FROM\n" +
-      "  pg_index,\n" +
-      "  pg_class,\n" +
-      "  pg_attribute,\n" +
-      "  pg_namespace\n" +
-      "WHERE\n" +
-      "  nspname = ? AND\n" +
-      "  pg_class.oid = ?::REGCLASS AND\n" +
-      "  indrelid = pg_class.oid AND\n" +
-      "  pg_class.relnamespace = pg_namespace.oid AND\n" +
-      "  pg_attribute.attrelid = pg_class.oid AND\n" +
-      "  pg_attribute.attnum = ANY (pg_index.indkey)\n" +
-      "  AND indisprimary";
-
   static Set<String> findKeys(Connection connection, ChangeKey changeKey) throws SQLException {
     Set<String> keys = new LinkedHashSet<>();
 
@@ -196,40 +188,10 @@ class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<Postg
     return keys;
   }
 
-
-  class PostgreSQLTableMetadata implements TableMetadata {
-    String databaseName;
-    String schemaName;
-    String tableName;
-    Set<String> keyColumns;
-    Map<String, Schema> columnSchemas;
-
-    @Override
-    public String databaseName() {
-      return this.databaseName;
-    }
-
-    @Override
-    public String schemaName() {
-      return this.schemaName;
-    }
-
-    @Override
-    public String tableName() {
-      return this.tableName;
-    }
-
-    @Override
-    public Set<String> keyColumns() {
-      return this.keyColumns;
-    }
-
-    @Override
-    public Map<String, Schema> columnSchemas() {
-      return this.columnSchemas;
-    }
+  @Override
+  public Map<String, Object> startOffset(ChangeKey changeKey) throws SQLException {
+    return null;
   }
-
 
   @Override
   protected TableMetadata fetchTableMetadata(ChangeKey changeKey) throws SQLException {
@@ -266,5 +228,38 @@ class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<Postg
     }
 
     return tableMetadata;
+  }
+
+  class PostgreSQLTableMetadata implements TableMetadata {
+    String databaseName;
+    String schemaName;
+    String tableName;
+    Set<String> keyColumns;
+    Map<String, Schema> columnSchemas;
+
+    @Override
+    public String databaseName() {
+      return this.databaseName;
+    }
+
+    @Override
+    public String schemaName() {
+      return this.schemaName;
+    }
+
+    @Override
+    public String tableName() {
+      return this.tableName;
+    }
+
+    @Override
+    public Set<String> keyColumns() {
+      return this.keyColumns;
+    }
+
+    @Override
+    public Map<String, Schema> columnSchemas() {
+      return this.columnSchemas;
+    }
   }
 }

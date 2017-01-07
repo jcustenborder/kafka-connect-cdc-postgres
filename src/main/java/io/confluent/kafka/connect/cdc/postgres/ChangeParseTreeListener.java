@@ -79,7 +79,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
         log.trace("{}: typedef='{}'", changeKey, typeDef);
       }
 
-      String input=null;
+      String input = null;
 
       if (null != kvp.value()) {
         if (log.isTraceEnabled()) {
@@ -91,32 +91,32 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
           log.trace("{}: quotedValue='{}'", changeKey, kvp.quotedValue().getText());
         }
         input = kvp.quotedValue().getText();
-        input = input.substring(1, input.length()-1);
-        if(typeDef.equalsIgnoreCase("money") && input.startsWith("$")){
+        input = input.substring(1, input.length() - 1);
+        if (typeDef.equalsIgnoreCase("money") && input.startsWith("$")) {
           input = input.substring(1);
         }
       }
 
-      if(log.isTraceEnabled()) {
+      if (log.isTraceEnabled()) {
         log.trace("{}: input='{}'", changeKey, input);
       }
       Preconditions.checkNotNull(input, "input should never be null.");
       columnValue.schema = tableMetadata.columnSchemas().get(columnValue.columnName);
 
-      if("null".equalsIgnoreCase(input)){
+      if ("null".equalsIgnoreCase(input)) {
         columnValue.value = null;
         continue;
       }
 
       Set<String> skip = ImmutableSet.of("bytea", "money", "interval");
-      if(skip.contains(typeDef)){
+      if (skip.contains(typeDef)) {
         continue;
       }
 
       columnValue.value = this.parser.parseString(columnValue.schema, input);
 
-      if(tableMetadata.keyColumns().contains(columnValue.columnName)){
-        if(log.isTraceEnabled()) {
+      if (tableMetadata.keyColumns().contains(columnValue.columnName)) {
+        if (log.isTraceEnabled()) {
           log.trace("{}: Found key column {}", changeKey, columnValue.columnName);
         }
 

@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 public class PointTypeParserTest {
   Parsers.PointTypeParser parser;
   Schema schema;
+
   @BeforeEach
   public void before() {
     this.schema = PostgreSqlConstants.pointSchema();
@@ -26,7 +27,7 @@ public class PointTypeParserTest {
   @TestFactory
   public Stream<DynamicTest> parse() {
     List<TestCase> testCases = Arrays.asList(
-        new TestCase("(30.267199999999999,97.7430999999999983)", 30.267199999999999D,97.7430999999999983D)
+        new TestCase("(30.267199999999999,97.7430999999999983)", 30.267199999999999D, 97.7430999999999983D)
     );
 
     return testCases.stream().map(data -> dynamicTest(data.input, () -> parse(data)));
