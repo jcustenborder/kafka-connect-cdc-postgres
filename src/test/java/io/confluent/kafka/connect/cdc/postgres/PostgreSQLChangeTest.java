@@ -1,5 +1,6 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
+import io.confluent.kafka.connect.cdc.Change;
 import io.confluent.kafka.connect.cdc.ChangeKey;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import io.confluent.kafka.connect.cdc.TestDataUtils;
@@ -38,6 +39,14 @@ public class PostgreSQLChangeTest {
 
     PostgreSQLChange actual = builder.build(results);
     verify(testCase.time, atLeastOnce()).milliseconds();
+
+    if(log.isInfoEnabled()) {
+      log.trace("expected= {}", testCase.expected);
+      log.trace("testcase.expected.valuecolumns={}", testCase.expected.valueColumns());
+      for(Change.ColumnValue cv:testCase.expected.valueColumns()){
+        log.trace("columnvalue[{}]={}", cv.columnName(), cv.value());
+      }
+    }
 
     assertChange(testCase.expected, actual);
   }

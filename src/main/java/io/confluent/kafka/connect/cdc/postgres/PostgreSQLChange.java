@@ -4,9 +4,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import io.confluent.kafka.connect.cdc.Change;
-import io.confluent.kafka.connect.cdc.ChangeKey;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
-import io.confluent.kafka.connect.utils.data.Parser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CharStream;
@@ -157,7 +155,7 @@ class PostgreSQLChange implements Change {
       ParseTreeWalker.DEFAULT.walk(listener, parseTree);
       PostgreSQLChange change = listener.change();
 
-      if(null!=change) {
+      if (null != change) {
         change.timestamp = this.time.milliseconds();
         change.metadata = ImmutableMap.of(
             "location", location,
