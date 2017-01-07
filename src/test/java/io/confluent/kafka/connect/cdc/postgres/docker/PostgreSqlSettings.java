@@ -7,9 +7,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@ExtendWith(PostgreSQLSettingsExtension.class)
+@ExtendWith(PostgreSqlSettingsExtension.class)
 @Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PostgreSQLSettings {
+public @interface PostgreSqlSettings {
 
 }

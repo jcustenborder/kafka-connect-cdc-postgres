@@ -20,7 +20,7 @@ public class CircleTypeParserTest {
 
   @BeforeEach
   public void before() {
-    this.schema = PostgreSQLConstants.circleSchema();
+    this.schema = PostgreSqlConstants.circleSchema();
     this.parser = new Parsers.CircleTypeParser();
   }
 

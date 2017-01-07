@@ -17,24 +17,24 @@ import java.util.Set;
 
 class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
   private static final Logger log = LoggerFactory.getLogger(ChangeParseTreeListener.class);
-  final PostgreSQLSourceConnectorConfig config;
+  final PostgreSqlSourceConnectorConfig config;
   final TableMetadataProvider tableMetadataProvider;
   final Parser parser;
   String tableName;
   String schemaName;
-  PostgreSQLChange change;
+  PostgreSqlChange change;
 
 
-  ChangeParseTreeListener(PostgreSQLSourceConnectorConfig config, TableMetadataProvider tableMetadataProvider) {
+  ChangeParseTreeListener(PostgreSqlSourceConnectorConfig config, TableMetadataProvider tableMetadataProvider) {
     this.config = config;
     this.tableMetadataProvider = tableMetadataProvider;
     this.parser = new Parser();
-    this.parser.registerTypeParser(PostgreSQLConstants.pointSchema().build(), new Parsers.PointTypeParser());
-    this.parser.registerTypeParser(PostgreSQLConstants.boxSchema().build(), new Parsers.BoxTypeParser());
-    this.parser.registerTypeParser(PostgreSQLConstants.circleSchema().build(), new Parsers.CircleTypeParser());
-    this.parser.registerTypeParser(PostgreSQLConstants.polygonSchema().build(), new Parsers.PolygonTypeParser());
-    this.parser.registerTypeParser(PostgreSQLConstants.pathSchema().build(), new Parsers.PathTypeParser());
-    this.parser.registerTypeParser(PostgreSQLConstants.lsegSchema().build(), new Parsers.LsegTypeParser());
+    this.parser.registerTypeParser(PostgreSqlConstants.pointSchema().build(), new Parsers.PointTypeParser());
+    this.parser.registerTypeParser(PostgreSqlConstants.boxSchema().build(), new Parsers.BoxTypeParser());
+    this.parser.registerTypeParser(PostgreSqlConstants.circleSchema().build(), new Parsers.CircleTypeParser());
+    this.parser.registerTypeParser(PostgreSqlConstants.polygonSchema().build(), new Parsers.PolygonTypeParser());
+    this.parser.registerTypeParser(PostgreSqlConstants.pathSchema().build(), new Parsers.PathTypeParser());
+    this.parser.registerTypeParser(PostgreSqlConstants.lsegSchema().build(), new Parsers.LsegTypeParser());
   }
 
   @Override
@@ -44,7 +44,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
     }
 
 
-    this.change = new PostgreSQLChange();
+    this.change = new PostgreSqlChange();
     this.change.changeType(Change.ChangeType.INSERT);
     this.change.schemaName(schemaName);
     this.change.tableName(tableName);
@@ -66,7 +66,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
 
   private void parseColumns(List<PgLogicalDecodingParser.NewKeyValuePairContext> values, ChangeKey changeKey, TableMetadataProvider.TableMetadata tableMetadata) {
     for (PgLogicalDecodingParser.NewKeyValuePairContext kvp : values) {
-      PostgreSQLChange.PostgreSQLColumnValue columnValue = new PostgreSQLChange.PostgreSQLColumnValue();
+      PostgreSqlChange.PostgreSQLColumnValue columnValue = new PostgreSqlChange.PostgreSQLColumnValue();
       this.change.valueColumns.add(columnValue);
       columnValue.columnName = kvp.columnname().getText();
       if (log.isTraceEnabled()) {
@@ -137,7 +137,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
     if (log.isTraceEnabled()) {
       log.trace("enterUpdateOp - {}", ctx.toStringTree());
     }
-    this.change = new PostgreSQLChange();
+    this.change = new PostgreSqlChange();
     this.change.changeType(Change.ChangeType.UPDATE);
     this.change.schemaName(schemaName);
     this.change.tableName(tableName);
@@ -163,7 +163,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
     if (log.isTraceEnabled()) {
       log.trace("enterDeleteOp - {}", ctx.toStringTree());
     }
-    this.change = new PostgreSQLChange();
+    this.change = new PostgreSqlChange();
     this.change.changeType(Change.ChangeType.DELETE);
     this.change.schemaName(schemaName);
     this.change.tableName(tableName);
@@ -208,7 +208,7 @@ class ChangeParseTreeListener extends PgLogicalDecodingBaseListener {
     super.visitErrorNode(node);
   }
 
-  public PostgreSQLChange change() {
+  public PostgreSqlChange change() {
     return this.change;
   }
 }

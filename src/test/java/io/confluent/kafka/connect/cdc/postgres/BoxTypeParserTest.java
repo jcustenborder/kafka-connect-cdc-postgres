@@ -21,7 +21,7 @@ public class BoxTypeParserTest {
 
   @BeforeEach
   public void before() {
-    this.schema = PostgreSQLConstants.boxSchema();
+    this.schema = PostgreSqlConstants.boxSchema();
     this.parser = new Parsers.BoxTypeParser();
   }
 

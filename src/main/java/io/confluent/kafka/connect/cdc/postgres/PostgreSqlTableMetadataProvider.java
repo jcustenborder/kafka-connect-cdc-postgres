@@ -29,10 +29,10 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-class PostgreSQLTableMetadataProvider extends CachingTableMetadataProvider<PostgreSQLSourceConnectorConfig> {
-  private static final Logger log = LoggerFactory.getLogger(PostgreSQLTableMetadataProvider.class);
+class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<PostgreSqlSourceConnectorConfig> {
+  private static final Logger log = LoggerFactory.getLogger(PostgreSqlTableMetadataProvider.class);
 
-  public PostgreSQLTableMetadataProvider(PostgreSQLSourceConnectorConfig config, OffsetStorageReader offsetStorageReader) {
+  public PostgreSqlTableMetadataProvider(PostgreSqlSourceConnectorConfig config, OffsetStorageReader offsetStorageReader) {
     super(config, offsetStorageReader);
   }
 
@@ -110,21 +110,21 @@ class PostgreSQLTableMetadataProvider extends CachingTableMetadataProvider<Postg
       } else if ("timestamp with time zone".equalsIgnoreCase(dataType)) {
         builder = Timestamp.builder();
       } else if ("point".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.pointSchema();
+        builder = PostgreSqlConstants.pointSchema();
       } else if ("box".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.boxSchema();
+        builder = PostgreSqlConstants.boxSchema();
       } else if ("circle".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.circleSchema();
+        builder = PostgreSqlConstants.circleSchema();
       } else if ("lseg".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.lsegSchema();
+        builder = PostgreSqlConstants.lsegSchema();
       } else if ("path".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.pathSchema();
+        builder = PostgreSqlConstants.pathSchema();
       } else if ("polygon".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.polygonSchema();
+        builder = PostgreSqlConstants.polygonSchema();
       } else if ("line".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.lineSchema();
+        builder = PostgreSqlConstants.lineSchema();
       } else if ("interval".equalsIgnoreCase(dataType)) {
-        builder = PostgreSQLConstants.intervalSchema();
+        builder = PostgreSqlConstants.intervalSchema();
       } else {
         String message = String.format(
             "Could not determine schema for %s: dataType='%s' scale=%d nullable=%s",

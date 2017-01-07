@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-class PostgreSQLChange implements Change {
+class PostgreSqlChange implements Change {
   String databaseName;
   String tableName;
   String schemaName;
@@ -115,11 +115,11 @@ class PostgreSQLChange implements Change {
   static class Builder {
     private static final Logger log = LoggerFactory.getLogger(Builder.class);
     final TableMetadataProvider tableMetadataProvider;
-    final PostgreSQLSourceConnectorConfig config;
+    final PostgreSqlSourceConnectorConfig config;
     final Time time;
     final Map<String, Object> sourcePartition;
 
-    Builder(PostgreSQLSourceConnectorConfig config, Time time, TableMetadataProvider tableMetadataProvider) {
+    Builder(PostgreSqlSourceConnectorConfig config, Time time, TableMetadataProvider tableMetadataProvider) {
       this.config = config;
       Preconditions.checkNotNull(time, "time cannot be null.");
       Preconditions.checkNotNull(tableMetadataProvider, "tableMetadataProvider cannot be null.");
@@ -128,7 +128,7 @@ class PostgreSQLChange implements Change {
       this.sourcePartition = ImmutableMap.of("slot", this.config.replicationSlotName);
     }
 
-    PostgreSQLChange build(ResultSet results) throws SQLException {
+    PostgreSqlChange build(ResultSet results) throws SQLException {
       String location = results.getString(1);
       Long xid = results.getLong(2);
       String data = results.getString(3);
@@ -153,7 +153,7 @@ class PostgreSQLChange implements Change {
       parser.setErrorHandler(new BailErrorStrategy());
       PgLogicalDecodingParser.LoglineContext parseTree = parser.logline();
       ParseTreeWalker.DEFAULT.walk(listener, parseTree);
-      PostgreSQLChange change = listener.change();
+      PostgreSqlChange change = listener.change();
 
       if (null != change) {
         change.timestamp = this.time.milliseconds();

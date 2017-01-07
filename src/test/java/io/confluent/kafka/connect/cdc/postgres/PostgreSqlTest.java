@@ -11,22 +11,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class PostgreSQLTest {
+public abstract class PostgreSqlTest {
 
   @BeforeAll
   public static void beforeClass(
-      @DockerFormatString(container = PostgreSQLTestConstants.CONTAINER_NAME, port = PostgreSQLTestConstants.PORT, format = PostgreSQLTestConstants.JDBC_URL_FORMAT) String jdbcUrl
+      @DockerFormatString(container = PostgreSqlTestConstants.CONTAINER_NAME, port = PostgreSqlTestConstants.PORT, format = PostgreSqlTestConstants.JDBC_URL_FORMAT) String jdbcUrl
   ) throws SQLException, InterruptedException, IOException {
     createSlot(jdbcUrl);
     Flyway flyway = new Flyway();
-    flyway.setDataSource(jdbcUrl, PostgreSQLTestConstants.USERNAME, PostgreSQLTestConstants.PASSWORD);
+    flyway.setDataSource(jdbcUrl, PostgreSqlTestConstants.USERNAME, PostgreSqlTestConstants.PASSWORD);
     flyway.migrate();
   }
 
   static void createSlot(String jdbcUrl) throws SQLException {
-    try (Connection connection = DriverManager.getConnection(jdbcUrl, PostgreSQLTestConstants.USERNAME, PostgreSQLTestConstants.PASSWORD)) {
+    try (Connection connection = DriverManager.getConnection(jdbcUrl, PostgreSqlTestConstants.USERNAME, PostgreSqlTestConstants.PASSWORD)) {
       try (PreparedStatement statement = connection.prepareStatement("SELECT 'init' FROM pg_create_logical_replication_slot(?, ?)")) {
-        statement.setString(1, PostgreSQLTestConstants.REPLICATION_SLOT_NAME);
+        statement.setString(1, PostgreSqlTestConstants.REPLICATION_SLOT_NAME);
         statement.setString(2, "test_decoding");
         try (ResultSet resultSet = statement.executeQuery()) {
           while (resultSet.next()) {

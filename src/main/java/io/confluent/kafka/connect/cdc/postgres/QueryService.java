@@ -2,7 +2,6 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.util.concurrent.AbstractExecutionThreadService;
 import com.google.common.util.concurrent.RateLimiter;
-import io.confluent.kafka.connect.cdc.ChangeKey;
 import io.confluent.kafka.connect.cdc.JdbcUtils;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.apache.kafka.common.utils.Time;
@@ -19,16 +18,16 @@ class QueryService extends AbstractExecutionThreadService {
 
   final Time time;
   final TableMetadataProvider tableMetadataProvider;
-  final PostgreSQLSourceConnectorConfig config;
+  final PostgreSqlSourceConnectorConfig config;
   final RateLimiter queryRateLimiter;
-  final PostgreSQLChange.Builder changeBuilder;
+  final PostgreSqlChange.Builder changeBuilder;
 
-  QueryService(Time time, TableMetadataProvider tableMetadataProvider, PostgreSQLSourceConnectorConfig config) {
+  QueryService(Time time, TableMetadataProvider tableMetadataProvider, PostgreSqlSourceConnectorConfig config) {
     this.time = time;
     this.tableMetadataProvider = tableMetadataProvider;
     this.config = config;
     this.queryRateLimiter = RateLimiter.create(10);
-    this.changeBuilder = new PostgreSQLChange.Builder(this.config, this.time, this.tableMetadataProvider);
+    this.changeBuilder = new PostgreSqlChange.Builder(this.config, this.time, this.tableMetadataProvider);
   }
 
 //  void createLogicalReplicationSlot() {
@@ -77,7 +76,7 @@ class QueryService extends AbstractExecutionThreadService {
 
         try (ResultSet results = statement.executeQuery()) {
           while (results.next()) {
-            PostgreSQLChange change = this.changeBuilder.build(results);
+            PostgreSqlChange change = this.changeBuilder.build(results);
           }
         }
       }

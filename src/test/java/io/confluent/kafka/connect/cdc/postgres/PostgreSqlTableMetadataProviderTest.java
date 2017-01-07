@@ -6,15 +6,13 @@ import io.confluent.kafka.connect.cdc.Integration;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import io.confluent.kafka.connect.cdc.docker.DockerCompose;
 import io.confluent.kafka.connect.cdc.docker.DockerFormatString;
-import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSQLClusterHealthCheck;
-import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSQLSettings;
-import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSQLSettingsExtension;
+import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSqlClusterHealthCheck;
+import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSqlSettings;
+import io.confluent.kafka.connect.cdc.postgres.docker.PostgreSqlSettingsExtension;
 import org.apache.kafka.connect.storage.OffsetStorageReader;
 import org.junit.experimental.categories.Category;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -35,28 +33,28 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 
 @Category(Integration.class)
-@DockerCompose(dockerComposePath = PostgreSQLTestConstants.DOCKER_COMPOSE_FILE, clusterHealthCheck = PostgreSQLClusterHealthCheck.class)
-@ExtendWith(PostgreSQLSettingsExtension.class)
-public class PostgreSQLTableMetadataProviderTest extends PostgreSQLTest {
-  private static final Logger log = LoggerFactory.getLogger(PostgreSQLTableMetadataProviderTest.class);
-  PostgreSQLSourceConnectorConfig config;
-  PostgreSQLTableMetadataProvider tableMetadataProvider;
+@DockerCompose(dockerComposePath = PostgreSqlTestConstants.DOCKER_COMPOSE_FILE, clusterHealthCheck = PostgreSqlClusterHealthCheck.class)
+@ExtendWith(PostgreSqlSettingsExtension.class)
+public class PostgreSqlTableMetadataProviderTest extends PostgreSqlTest {
+  private static final Logger log = LoggerFactory.getLogger(PostgreSqlTableMetadataProviderTest.class);
+  PostgreSqlSourceConnectorConfig config;
+  PostgreSqlTableMetadataProvider tableMetadataProvider;
 
   @BeforeEach
-  public void settings(@PostgreSQLSettings Map<String, String> settings) {
-    this.config = new PostgreSQLSourceConnectorConfig(settings);
+  public void settings(@PostgreSqlSettings Map<String, String> settings) {
+    this.config = new PostgreSqlSourceConnectorConfig(settings);
     OffsetStorageReader offsetStorageReader = mock(OffsetStorageReader.class);
-    this.tableMetadataProvider = new PostgreSQLTableMetadataProvider(this.config, offsetStorageReader);
+    this.tableMetadataProvider = new PostgreSqlTableMetadataProvider(this.config, offsetStorageReader);
   }
 
   @TestFactory
   public Stream<DynamicTest> fetchTableMetadata(
-      @DockerFormatString(container = PostgreSQLTestConstants.CONTAINER_NAME, port = PostgreSQLTestConstants.PORT, format = PostgreSQLTestConstants.JDBC_URL_FORMAT) String jdbcUrl
+      @DockerFormatString(container = PostgreSqlTestConstants.CONTAINER_NAME, port = PostgreSqlTestConstants.PORT, format = PostgreSqlTestConstants.JDBC_URL_FORMAT) String jdbcUrl
   ) throws SQLException {
 
     List<ChangeKey> tables = new ArrayList<>();
 
-    try (Connection connection = DriverManager.getConnection(jdbcUrl, PostgreSQLTestConstants.USERNAME, PostgreSQLTestConstants.PASSWORD)) {
+    try (Connection connection = DriverManager.getConnection(jdbcUrl, PostgreSqlTestConstants.USERNAME, PostgreSqlTestConstants.PASSWORD)) {
       try (Statement statement = connection.createStatement()) {
         try (ResultSet resultSet = statement.executeQuery("SELECT table_catalog, table_schema, table_name from information_schema.tables where lower(table_schema) = lower('public')")) {
           while (resultSet.next()) {
@@ -75,7 +73,7 @@ public class PostgreSQLTableMetadataProviderTest extends PostgreSQLTest {
   }
 
   void fetchTableMetadata(String jdbcUrl, ChangeKey changeKey) throws SQLException {
-    try (Connection connection = DriverManager.getConnection(jdbcUrl, PostgreSQLTestConstants.USERNAME, PostgreSQLTestConstants.PASSWORD)) {
+    try (Connection connection = DriverManager.getConnection(jdbcUrl, PostgreSqlTestConstants.USERNAME, PostgreSqlTestConstants.PASSWORD)) {
       try (Statement statement = connection.createStatement()) {
         try (ResultSet resultSet = statement.executeQuery(
             String.format("Select * from %s limit 1", changeKey.tableName))) {//

@@ -9,11 +9,11 @@ import org.postgresql.ds.PGConnectionPoolDataSource;
 import javax.sql.ConnectionPoolDataSource;
 import java.sql.SQLException;
 
-class PostgreSQLConnectionPoolDataSourceFactory implements ConnectionPoolDataSourceFactory {
+class PostgreSqlConnectionPoolDataSourceFactory implements ConnectionPoolDataSourceFactory {
 
-  final PostgreSQLSourceConnectorConfig config;
+  final PostgreSqlSourceConnectorConfig config;
 
-  PostgreSQLConnectionPoolDataSourceFactory(PostgreSQLSourceConnectorConfig config) {
+  PostgreSqlConnectionPoolDataSourceFactory(PostgreSqlSourceConnectorConfig config) {
     this.config = config;
   }
 

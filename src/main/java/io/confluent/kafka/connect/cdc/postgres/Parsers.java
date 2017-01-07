@@ -34,7 +34,7 @@ public class Parsers {
 
     @Override
     public Object parseString(String s, Schema schema) {
-      Matcher matcher = match(s, schema, PostgreSQLConstants.SCHEMA_NAME_POINT, POINT_PATTERN);
+      Matcher matcher = match(s, schema, PostgreSqlConstants.SCHEMA_NAME_POINT, POINT_PATTERN);
       double x = Double.parseDouble(matcher.group("x"));
       double y = Double.parseDouble(matcher.group("y"));
       Struct struct = new Struct(schema);
@@ -59,7 +59,7 @@ public class Parsers {
 
     @Override
     public Object parseString(String s, Schema schema) {
-      Matcher matcher = match(s, schema, PostgreSQLConstants.SCHEMA_NAME_CIRCLE, pattern);
+      Matcher matcher = match(s, schema, PostgreSqlConstants.SCHEMA_NAME_CIRCLE, pattern);
       double x = Double.parseDouble(matcher.group("x"));
       double y = Double.parseDouble(matcher.group("y"));
       double radius = Double.parseDouble(matcher.group("radius"));
@@ -90,7 +90,7 @@ public class Parsers {
 
     @Override
     public Object parseString(String s, Schema schema) {
-      checkSchemaName(schema, PostgreSQLConstants.SCHEMA_NAME_BOX);
+      checkSchemaName(schema, PostgreSqlConstants.SCHEMA_NAME_BOX);
       Matcher matcher = POINT_PARTIAL_PATTERN.matcher(s);
       Schema pointSchema = schema.field(FIELD_BOX_POINT).schema().valueSchema();
       List<Struct> points = new ArrayList<>();
@@ -117,7 +117,7 @@ public class Parsers {
 
     @Override
     public Object parseString(String s, Schema schema) {
-      checkSchemaName(schema, PostgreSQLConstants.SCHEMA_NAME_POLYGON);
+      checkSchemaName(schema, PostgreSqlConstants.SCHEMA_NAME_POLYGON);
       String input = s.substring(1, s.length() - 1);
       Matcher matcher = pattern.matcher(input);
 
@@ -144,7 +144,7 @@ public class Parsers {
   public static class PathTypeParser implements TypeParser {
     @Override
     public Object parseString(String s, Schema schema) {
-      checkSchemaName(schema, PostgreSQLConstants.SCHEMA_NAME_PATH);
+      checkSchemaName(schema, PostgreSqlConstants.SCHEMA_NAME_PATH);
       String input = s.substring(1, s.length() - 1);
       Matcher matcher = POINT_PARTIAL_PATTERN.matcher(input);
 
@@ -171,7 +171,7 @@ public class Parsers {
   public static class LsegTypeParser implements TypeParser {
     @Override
     public Object parseString(String s, Schema schema) {
-      checkSchemaName(schema, PostgreSQLConstants.SCHEMA_NAME_LSEG);
+      checkSchemaName(schema, PostgreSqlConstants.SCHEMA_NAME_LSEG);
       String input = s.substring(1, s.length() - 1);
       Matcher matcher = POINT_PARTIAL_PATTERN.matcher(input);
 
@@ -199,7 +199,7 @@ public class Parsers {
     while (matcher.find()) {
       double x = Double.parseDouble(matcher.group("x"));
       double y = Double.parseDouble(matcher.group("y"));
-      Struct point = PostgreSQLConstants.pointStruct(pointSchema, x, y);
+      Struct point = PostgreSqlConstants.pointStruct(pointSchema, x, y);
       points.add(point);
     }
   }

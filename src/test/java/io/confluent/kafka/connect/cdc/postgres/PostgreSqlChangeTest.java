@@ -22,8 +22,8 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.*;
 
 
-public class PostgreSQLChangeTest {
-  private static final Logger log = LoggerFactory.getLogger(PostgreSQLChangeTest.class);
+public class PostgreSqlChangeTest {
+  private static final Logger log = LoggerFactory.getLogger(PostgreSqlChangeTest.class);
 
 
   void build(PostgreSQLChangeTestCase testCase) throws SQLException {
@@ -34,10 +34,10 @@ public class PostgreSQLChangeTest {
     when(results.getString(3)).thenReturn(testCase.data);
     TableMetadataProvider tableMetadataProvider = mock(TableMetadataProvider.class);
     when(tableMetadataProvider.tableMetadata(any(ChangeKey.class))).thenReturn(testCase.tableMetadata);
-    PostgreSQLSourceConnectorConfig config = new PostgreSQLSourceConnectorConfig(PostgreSQLTestConstants.settings("dummy", 54321));
-    PostgreSQLChange.Builder builder = new PostgreSQLChange.Builder(config, testCase.time, tableMetadataProvider);
+    PostgreSqlSourceConnectorConfig config = new PostgreSqlSourceConnectorConfig(PostgreSqlTestConstants.settings("dummy", 54321));
+    PostgreSqlChange.Builder builder = new PostgreSqlChange.Builder(config, testCase.time, tableMetadataProvider);
 
-    PostgreSQLChange actual = builder.build(results);
+    PostgreSqlChange actual = builder.build(results);
     verify(testCase.time, atLeastOnce()).milliseconds();
 
     if(log.isInfoEnabled()) {

@@ -6,12 +6,12 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-public class PostgreSQLSourceTask extends CDCSourceTask<PostgreSQLSourceConnectorConfig> {
-  private static final Logger log = LoggerFactory.getLogger(PostgreSQLSourceTask.class);
+public class PostgreSqlSourceTask extends CDCSourceTask<PostgreSqlSourceConnectorConfig> {
+  private static final Logger log = LoggerFactory.getLogger(PostgreSqlSourceTask.class);
 
   @Override
-  protected PostgreSQLSourceConnectorConfig getConfig(Map<String, String> map) {
-    return new PostgreSQLSourceConnectorConfig(map);
+  protected PostgreSqlSourceConnectorConfig getConfig(Map<String, String> map) {
+    return new PostgreSqlSourceConnectorConfig(map);
   }
 
   @Override

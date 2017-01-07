@@ -19,7 +19,7 @@ public class PathTypeParserTest {
 
   @BeforeEach
   public void before() {
-    this.schema = PostgreSQLConstants.pathSchema();
+    this.schema = PostgreSqlConstants.pathSchema();
     this.parser = new Parsers.PathTypeParser();
   }
 

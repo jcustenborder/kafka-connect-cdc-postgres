@@ -19,7 +19,7 @@ public class PolygonTypeParserTest {
 
   @BeforeEach
   public void before() {
-    this.schema = PostgreSQLConstants.polygonSchema();
+    this.schema = PostgreSqlConstants.polygonSchema();
     this.parser = new Parsers.PolygonTypeParser();
   }
 

@@ -4,7 +4,7 @@ import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
 import org.apache.kafka.connect.data.Struct;
 
-class PostgreSQLConstants {
+class PostgreSqlConstants {
 
   public static final String SCHEMA_NAME_POINT = "io.confluent.kafka.connect.cdc.postgres.schema.Point";
   public static final String SCHEMA_NAME_BOX = "io.confluent.kafka.connect.cdc.postgres.schema.Box";

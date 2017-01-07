@@ -5,7 +5,7 @@ import com.google.common.base.Preconditions;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PostgreSQLTestConstants {
+public class PostgreSqlTestConstants {
   public static final String CONTAINER_NAME = "postgres";
   public static final int PORT = 5432;
   public static final String USERNAME = "postgres";
@@ -19,12 +19,12 @@ public class PostgreSQLTestConstants {
     Preconditions.checkNotNull(host, "host cannot be null");
     Preconditions.checkNotNull(port, "port cannot be null");
     Map<String, String> settings = new LinkedHashMap<>();
-    settings.put(PostgreSQLSourceConnectorConfig.SERVER_NAME_CONF, host);
-    settings.put(PostgreSQLSourceConnectorConfig.SERVER_PORT_CONF, port.toString());
-    settings.put(PostgreSQLSourceConnectorConfig.INITIAL_DATABASE_CONF, DATABASE_NAME);
-    settings.put(PostgreSQLSourceConnectorConfig.JDBC_USERNAME_CONF, USERNAME);
-    settings.put(PostgreSQLSourceConnectorConfig.JDBC_PASSWORD_CONF, PASSWORD);
-    settings.put(PostgreSQLSourceConnectorConfig.POSTGRES_REPLICATION_SLOT_NAME_CONF, REPLICATION_SLOT_NAME);
+    settings.put(PostgreSqlSourceConnectorConfig.SERVER_NAME_CONF, host);
+    settings.put(PostgreSqlSourceConnectorConfig.SERVER_PORT_CONF, port.toString());
+    settings.put(PostgreSqlSourceConnectorConfig.INITIAL_DATABASE_CONF, DATABASE_NAME);
+    settings.put(PostgreSqlSourceConnectorConfig.JDBC_USERNAME_CONF, USERNAME);
+    settings.put(PostgreSqlSourceConnectorConfig.JDBC_PASSWORD_CONF, PASSWORD);
+    settings.put(PostgreSqlSourceConnectorConfig.POSTGRES_REPLICATION_SLOT_NAME_CONF, REPLICATION_SLOT_NAME);
     return settings;
   }
 }

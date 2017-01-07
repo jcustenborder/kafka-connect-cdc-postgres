@@ -19,7 +19,7 @@ public class PointTypeParserTest {
   Schema schema;
   @BeforeEach
   public void before() {
-    this.schema = PostgreSQLConstants.pointSchema();
+    this.schema = PostgreSqlConstants.pointSchema();
     this.parser = new Parsers.PointTypeParser();
   }
 

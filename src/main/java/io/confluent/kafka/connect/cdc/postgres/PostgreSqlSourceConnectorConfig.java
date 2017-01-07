@@ -21,20 +21,20 @@ import org.apache.kafka.common.config.ConfigDef;
 
 import java.util.Map;
 
-public class PostgreSQLSourceConnectorConfig extends PooledCDCSourceConnectorConfig {
+public class PostgreSqlSourceConnectorConfig extends PooledCDCSourceConnectorConfig {
 
   public static final String POSTGRES_REPLICATION_SLOT_NAME_CONF = "postgres.replication.slot.name";
   static final String POSTGRES_REPLICATION_SLOT_NAME_DOC = "THe replication slot names to connect to.";
 
   public final String replicationSlotName;
 
-  public PostgreSQLSourceConnectorConfig(Map<String, String> parsedConfig) {
+  public PostgreSqlSourceConnectorConfig(Map<String, String> parsedConfig) {
     super(config(), parsedConfig);
     this.replicationSlotName = this.getString(POSTGRES_REPLICATION_SLOT_NAME_CONF);
-    this.dataSourceFactory = new PostgreSQLConnectionPoolDataSourceFactory(this);
+    this.dataSourceFactory = new PostgreSqlConnectionPoolDataSourceFactory(this);
   }
 
-  final PostgreSQLConnectionPoolDataSourceFactory dataSourceFactory;
+  final PostgreSqlConnectionPoolDataSourceFactory dataSourceFactory;
 
   public static ConfigDef config() {
     return PooledCDCSourceConnectorConfig.config()

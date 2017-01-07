@@ -19,7 +19,7 @@ public class LsegTypeParserTest {
 
   @BeforeEach
   public void before() {
-    this.schema = PostgreSQLConstants.lsegSchema();
+    this.schema = PostgreSqlConstants.lsegSchema();
     this.parser = new Parsers.LsegTypeParser();
   }
 
