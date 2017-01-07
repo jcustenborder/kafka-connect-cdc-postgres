@@ -230,7 +230,7 @@ class PostgreSqlTableMetadataProvider extends CachingTableMetadataProvider<Postg
     return tableMetadata;
   }
 
-  class PostgreSQLTableMetadata implements TableMetadata {
+  static class PostgreSQLTableMetadata implements TableMetadata {
     String databaseName;
     String schemaName;
     String tableName;
