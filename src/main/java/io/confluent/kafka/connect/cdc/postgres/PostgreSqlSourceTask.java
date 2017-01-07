@@ -1,29 +1,29 @@
 package io.confluent.kafka.connect.cdc.postgres;
 
-import io.confluent.kafka.connect.cdc.CDCSourceTask;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.google.common.util.concurrent.Service;
+import io.confluent.kafka.connect.cdc.BaseServiceTask;
+import io.confluent.kafka.connect.cdc.ChangeWriter;
+import io.confluent.kafka.connect.cdc.TableMetadataProvider;
+import org.apache.kafka.common.utils.SystemTime;
+import org.apache.kafka.common.utils.Time;
+import org.apache.kafka.connect.storage.OffsetStorageReader;
 
 import java.util.Map;
 
-public class PostgreSqlSourceTask extends CDCSourceTask<PostgreSqlSourceConnectorConfig> {
-  private static final Logger log = LoggerFactory.getLogger(PostgreSqlSourceTask.class);
+class PostgreSqlSourceTask extends BaseServiceTask<PostgreSqlSourceConnectorConfig> {
+  ChangeWriter changeWriter;
+  Time time = new SystemTime();
+  TableMetadataProvider tableMetadataProvider;
+
+  @Override
+  protected Service service(ChangeWriter changeWriter, OffsetStorageReader offsetStorageReader) {
+    this.changeWriter = changeWriter;
+    this.tableMetadataProvider = new PostgreSqlTableMetadataProvider(this.config, offsetStorageReader);
+    return new QueryService(this.time, this.tableMetadataProvider, this.config, this.changeWriter);
+  }
 
   @Override
   protected PostgreSqlSourceConnectorConfig getConfig(Map<String, String> map) {
     return new PostgreSqlSourceConnectorConfig(map);
   }
-
-  @Override
-  public void start(Map<String, String> map) {
-    super.start(map);
-  }
-
-  @Override
-  public void stop() {
-
-
-  }
-
-
 }

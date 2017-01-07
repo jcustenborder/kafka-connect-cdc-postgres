@@ -2,6 +2,7 @@ package io.confluent.kafka.connect.cdc.postgres;
 
 import com.google.common.util.concurrent.AbstractExecutionThreadService;
 import com.google.common.util.concurrent.RateLimiter;
+import io.confluent.kafka.connect.cdc.ChangeWriter;
 import io.confluent.kafka.connect.cdc.JdbcUtils;
 import io.confluent.kafka.connect.cdc.TableMetadataProvider;
 import org.apache.kafka.common.utils.Time;
@@ -21,34 +22,16 @@ class QueryService extends AbstractExecutionThreadService {
   final PostgreSqlSourceConnectorConfig config;
   final RateLimiter queryRateLimiter;
   final PostgreSqlChange.Builder changeBuilder;
+  final ChangeWriter changeWriter;
 
-  QueryService(Time time, TableMetadataProvider tableMetadataProvider, PostgreSqlSourceConnectorConfig config) {
+  QueryService(Time time, TableMetadataProvider tableMetadataProvider, PostgreSqlSourceConnectorConfig config, ChangeWriter changeWriter) {
     this.time = time;
     this.tableMetadataProvider = tableMetadataProvider;
     this.config = config;
+    this.changeWriter = changeWriter;
     this.queryRateLimiter = RateLimiter.create(10);
     this.changeBuilder = new PostgreSqlChange.Builder(this.config, this.time, this.tableMetadataProvider);
   }
-
-//  void createLogicalReplicationSlot() {
-//    final String SQL = "SELECT 'init' FROM pg_create_logical_replication_slot(?, ?)";
-//    try (PreparedStatement statement = this.connection.prepareStatement(SQL)) {
-//      statement.setString(1, this.slot);
-//      statement.setString(2, "test_decoding");
-//
-//      try (ResultSet resultSet = statement.executeQuery()) {
-//        while (resultSet.next()) {
-//
-//        }
-//      }
-//
-//
-//    } catch (SQLException ex) {
-//      throw new DataException("Exception thrown", ex);
-//    }
-//
-//  }
-
 
   @Override
   protected void run() throws Exception {
@@ -77,6 +60,7 @@ class QueryService extends AbstractExecutionThreadService {
         try (ResultSet results = statement.executeQuery()) {
           while (results.next()) {
             PostgreSqlChange change = this.changeBuilder.build(results);
+            this.changeWriter.addChange(change);
           }
         }
       }
