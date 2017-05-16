@@ -24,7 +24,7 @@ import java.util.Map;
 class PostgreSqlSourceConnectorConfig extends PooledCDCSourceConnectorConfig {
 
   public static final String POSTGRES_REPLICATION_SLOT_NAME_CONF = "postgres.replication.slot.name";
-  static final String POSTGRES_REPLICATION_SLOT_NAME_DOC = "THe replication slot names to connect to.";
+  static final String POSTGRES_REPLICATION_SLOT_NAME_DOC = "The PostgreSQL [replication slot](https://www.postgresql.org/docs/current/static/logicaldecoding-explanation.html#AEN66844) name to connect to.";
 
   public final String replicationSlotName;
   final PostgreSqlConnectionPoolDataSourceFactory dataSourceFactory;
