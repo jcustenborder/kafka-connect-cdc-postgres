@@ -21,7 +21,7 @@ import org.apache.kafka.common.config.ConfigDef;
 
 import java.util.Map;
 
-public class PostgreSqlSourceConnectorConfig extends PooledCDCSourceConnectorConfig {
+class PostgreSqlSourceConnectorConfig extends PooledCDCSourceConnectorConfig {
 
   public static final String POSTGRES_REPLICATION_SLOT_NAME_CONF = "postgres.replication.slot.name";
   static final String POSTGRES_REPLICATION_SLOT_NAME_DOC = "THe replication slot names to connect to.";

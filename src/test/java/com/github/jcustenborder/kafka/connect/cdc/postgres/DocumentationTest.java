@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,14 +15,11 @@
  */
 package com.github.jcustenborder.kafka.connect.cdc.postgres;
 
-import com.github.jcustenborder.kafka.connect.utils.config.MarkdownFormatter;
-import org.junit.jupiter.api.Test;
+import com.github.jcustenborder.kafka.connect.utils.BaseDocumentationTest;
 
-public class PostgreSqlSourceConnectorConfigTest {
-
-  @Test
-  public void doc() {
-    System.out.println(MarkdownFormatter.toMarkdown(PostgreSqlSourceConnectorConfig.config()));
+public class DocumentationTest extends BaseDocumentationTest {
+  @Override
+  protected String[] packages() {
+    return new String[]{this.getClass().getPackage().getName()};
   }
-
 }
