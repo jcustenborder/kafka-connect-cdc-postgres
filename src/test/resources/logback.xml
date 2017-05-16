@@ -5,8 +5,7 @@
         </encoder>
     </appender>
 
-    <logger name="io.confluent" level="DEBUG" />
-    <logger name="io.confluent.kafka.connect.cdc.postgres" level="TRACE" />
+    <logger name="com.github.jcustenborder.kafka.connect.cdc" level="TRACE" />
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
