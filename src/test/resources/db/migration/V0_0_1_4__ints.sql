@@ -1,0 +1,29 @@
+CREATE TABLE smallint_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value SMALLINT
+);
+
+CREATE TABLE integer_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value INTEGER
+);
+
+CREATE TABLE bigint_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value BIGINT
+);
+
+CREATE TABLE serial_table (
+  ID    SERIAL PRIMARY KEY NOT NULL,
+  value VARCHAR(20)
+);
+
+CREATE TABLE smallserial_table (
+  ID    SMALLSERIAL PRIMARY KEY NOT NULL,
+  value VARCHAR(20)
+);
+
+CREATE TABLE boolean_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value BOOLEAN
+);

@@ -1,0 +1,14 @@
+CREATE TABLE cidr_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value CIDR
+);
+
+CREATE TABLE inet_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value INET
+);
+
+CREATE TABLE macaddr_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value MACADDR
+);

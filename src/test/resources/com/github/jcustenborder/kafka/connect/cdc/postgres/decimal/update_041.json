@@ -1,0 +1,65 @@
+{
+  "location" : "0/163ABE8",
+  "xid" : 638,
+  "timestamp" : 1482181656861,
+  "data" : "table public.decimal_50_40: UPDATE: id[bigint]:1 value[numeric]:0.0000000000000000000007254570633753741168",
+  "tableMetadata" : {
+    "schemaName" : "public",
+    "tableName" : "decimal_50_40",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT64",
+        "isOptional" : true
+      },
+      "value" : {
+        "name" : "org.apache.kafka.connect.data.Decimal",
+        "type" : "BYTES",
+        "version" : 1,
+        "parameters" : {
+          "scale" : "40"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : { },
+    "sourcePartition" : { },
+    "sourceOffset" : {
+      "testing" : "0/163ABE8"
+    },
+    "schemaName" : "public",
+    "tableName" : "decimal_50_40",
+    "changeType" : "UPDATE",
+    "timestamp" : 1482181656861,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "value" : 1,
+      "schema" : {
+        "type" : "INT64",
+        "isOptional" : true
+      }
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "value" : 1,
+      "schema" : {
+        "type" : "INT64",
+        "isOptional" : true
+      }
+    }, {
+      "columnName" : "value",
+      "value" : -3.26381102420769873E-23,
+      "schema" : {
+        "name" : "org.apache.kafka.connect.data.Decimal",
+        "type" : "BYTES",
+        "version" : 1,
+        "parameters" : {
+          "scale" : "40"
+        },
+        "isOptional" : true
+      }
+    } ]
+  }
+}
