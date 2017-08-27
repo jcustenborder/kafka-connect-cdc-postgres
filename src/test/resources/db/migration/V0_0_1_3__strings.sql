@@ -1,0 +1,69 @@
+CREATE TABLE varchar_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value VARCHAR(256)
+);
+
+CREATE TABLE character_varying_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value CHARACTER VARYING(256)
+);
+
+CREATE TABLE char_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value CHAR(256)
+);
+
+CREATE TABLE character_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value CHARACTER(256)
+);
+
+CREATE TABLE text_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value TEXT
+);
+
+CREATE TABLE bit_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value BIT(3)
+);
+
+CREATE TABLE bit_varying_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value BIT VARYING(5)
+);
+
+CREATE TABLE uuid_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value UUID
+);
+
+CREATE TABLE json_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value JSON
+);
+
+CREATE TABLE jsonb_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value JSONB
+);
+
+CREATE TABLE pg_lsn_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value PG_LSN
+);
+
+CREATE TABLE txid_snapshot_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value TXID_SNAPSHOT
+);
+
+CREATE TABLE xml_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value XML
+);
+
+
+
+
+

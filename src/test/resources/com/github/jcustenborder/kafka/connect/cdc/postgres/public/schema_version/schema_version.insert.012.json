@@ -1,0 +1,219 @@
+{
+  "location" : "0/170E158",
+  "xid" : 574,
+  "data" : "table public.schema_version: INSERT: installed_rank[integer]:12 version[character varying]:'0.0.1.102' description[character varying]:'data floats' type[character varying]:'SQL' script[character varying]:'V0_0_1_102__data_floats.sql' checksum[integer]:-492092295 installed_by[character varying]:'postgres' installed_on[timestamp without time zone]:'2017-01-06 17:18:28.526522' execution_time[integer]:23 success[boolean]:true",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "schema_version",
+    "keyColumns" : [ "installed_rank" ],
+    "columnSchemas" : {
+      "installed_rank" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_rank"
+        },
+        "isOptional" : false
+      },
+      "version" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "version"
+        },
+        "isOptional" : true
+      },
+      "description" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "description"
+        },
+        "isOptional" : false
+      },
+      "type" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "type"
+        },
+        "isOptional" : false
+      },
+      "script" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "script"
+        },
+        "isOptional" : false
+      },
+      "checksum" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "checksum"
+        },
+        "isOptional" : true
+      },
+      "installed_by" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_by"
+        },
+        "isOptional" : false
+      },
+      "installed_on" : {
+        "name" : "org.apache.kafka.connect.data.Timestamp",
+        "type" : "INT64",
+        "version" : 1,
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_on"
+        },
+        "isOptional" : false
+      },
+      "execution_time" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "execution_time"
+        },
+        "isOptional" : false
+      },
+      "success" : {
+        "type" : "BOOLEAN",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "success"
+        },
+        "isOptional" : false
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/170E158",
+      "xid" : "574"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/170E158"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "schema_version",
+    "changeType" : "INSERT",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "installed_rank",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_rank"
+        },
+        "isOptional" : false
+      },
+      "value" : 12
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "installed_rank",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_rank"
+        },
+        "isOptional" : false
+      },
+      "value" : 12
+    }, {
+      "columnName" : "version",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "version"
+        },
+        "isOptional" : true
+      },
+      "value" : "0.0.1.102"
+    }, {
+      "columnName" : "description",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "description"
+        },
+        "isOptional" : false
+      },
+      "value" : "data floats"
+    }, {
+      "columnName" : "type",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "type"
+        },
+        "isOptional" : false
+      },
+      "value" : "SQL"
+    }, {
+      "columnName" : "script",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "script"
+        },
+        "isOptional" : false
+      },
+      "value" : "V0_0_1_102__data_floats.sql"
+    }, {
+      "columnName" : "checksum",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "checksum"
+        },
+        "isOptional" : true
+      },
+      "value" : -492092295
+    }, {
+      "columnName" : "installed_by",
+      "schema" : {
+        "type" : "STRING",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_by"
+        },
+        "isOptional" : false
+      },
+      "value" : "postgres"
+    }, {
+      "columnName" : "installed_on",
+      "schema" : {
+        "name" : "org.apache.kafka.connect.data.Timestamp",
+        "type" : "INT64",
+        "version" : 1,
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "installed_on"
+        },
+        "isOptional" : false
+      },
+      "value" : 1483744708000
+    }, {
+      "columnName" : "execution_time",
+      "schema" : {
+        "type" : "INT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "execution_time"
+        },
+        "isOptional" : false
+      },
+      "value" : 23
+    }, {
+      "columnName" : "success",
+      "schema" : {
+        "type" : "BOOLEAN",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "success"
+        },
+        "isOptional" : false
+      },
+      "value" : true
+    } ]
+  }
+}

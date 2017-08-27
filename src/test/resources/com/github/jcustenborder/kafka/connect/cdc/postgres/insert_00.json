@@ -1,0 +1,83 @@
+{
+  "location": "0/151CDF0",
+  "xid": 555,
+  "timestamp": 1482095102000,
+  "data": "table public.simple_table: INSERT: user_id[bigint]:1 email_address[character varying]:'hinton@yahoo.com' first_name[character varying]:'Anthony' last_name[character varying]:'Hinton' description[text]:'Pain but example, pain, to. No there great. But physical pleasure?. Expound No which pain of fault. Not has produces take all pleasure.''Has it ever. Man who occur. Who But teachings pain rejects, expound pleasure, occasionally happiness. Of pleasure. Pursues because because.'",
+  "tableMetadata" : {
+    "schemaName" : "public",
+    "tableName" : "decimal_50_0",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT64",
+        "isOptional" : true
+      },
+      "value" : {
+        "name" : "org.apache.kafka.connect.data.Decimal",
+        "type" : "BYTES",
+        "version" : 1,
+        "parameters" : {
+          "scale" : "0"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected": {
+    "metadata": {
+    },
+    "sourcePartition": {
+    },
+    "sourceOffset": {
+      "testing": "0/151CDF0"
+    },
+    "schemaName": "public",
+    "tableName": "simple_table",
+    "changeType": "INSERT",
+    "timestamp": 1482095102000,
+    "keyColumns": [
+    ],
+    "valueColumns": [
+      {
+        "columnName": "user_id",
+        "value": 1,
+        "schema": {
+          "type": "INT32",
+          "isOptional": false
+        }
+      },
+      {
+        "columnName": "email_address",
+        "value": "hinton@yahoo.com",
+        "schema": {
+          "type": "STRING",
+          "isOptional": false
+        }
+      },
+      {
+        "columnName": "first_name",
+        "value": "Anthony",
+        "schema": {
+          "type": "STRING",
+          "isOptional": false
+        }
+      },
+      {
+        "columnName": "last_name",
+        "value": "Hinton",
+        "schema": {
+          "type": "STRING",
+          "isOptional": false
+        }
+      },
+      {
+        "columnName": "description",
+        "value": "Pain but example, pain, to. No there great. But physical pleasure?. Expound No which pain of fault. Not has produces take all pleasure.'Has it ever. Man who occur. Who But teachings pain rejects, expound pleasure, occasionally happiness. Of pleasure. Pursues because because.",
+        "schema": {
+          "type": "STRING",
+          "isOptional": false
+        }
+      }
+    ]
+  }
+}

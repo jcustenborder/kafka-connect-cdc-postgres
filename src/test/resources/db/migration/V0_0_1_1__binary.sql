@@ -1,0 +1,5 @@
+CREATE TABLE bytea_table (
+  ID BIGSERIAL PRIMARY KEY,
+  value BYTEA
+);
+

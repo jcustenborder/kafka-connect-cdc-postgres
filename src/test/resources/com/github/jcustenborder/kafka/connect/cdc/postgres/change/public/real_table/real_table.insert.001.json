@@ -1,0 +1,79 @@
+{
+  "location" : "0/170DC48",
+  "xid" : 575,
+  "data" : "table public.real_table: INSERT: id[bigint]:1 value[real]:3.1400001",
+  "time" : {
+    "milliseconds" : 1483728683123
+  },
+  "tableMetadata" : {
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "real_table",
+    "keyColumns" : [ "id" ],
+    "columnSchemas" : {
+      "id" : {
+        "type" : "INT64",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : {
+        "type" : "FLOAT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "value"
+        },
+        "isOptional" : true
+      }
+    }
+  },
+  "expected" : {
+    "metadata" : {
+      "location" : "0/170DC48",
+      "xid" : "575"
+    },
+    "sourcePartition" : {
+      "slot" : "kafka"
+    },
+    "sourceOffset" : {
+      "location" : "0/170DC48"
+    },
+    "databaseName" : "CDC_TESTING",
+    "schemaName" : "public",
+    "tableName" : "real_table",
+    "changeType" : "INSERT",
+    "timestamp" : 1483728683123,
+    "keyColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT64",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 1
+    } ],
+    "valueColumns" : [ {
+      "columnName" : "id",
+      "schema" : {
+        "type" : "INT64",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "id"
+        },
+        "isOptional" : false
+      },
+      "value" : 1
+    }, {
+      "columnName" : "value",
+      "schema" : {
+        "type" : "FLOAT32",
+        "parameters" : {
+          "io.confluent.kafka.connect.cdc.change.column.name" : "value"
+        },
+        "isOptional" : true
+      },
+      "value" : 3.14
+    } ]
+  }
+}

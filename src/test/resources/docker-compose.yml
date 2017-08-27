@@ -1,0 +1,11 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:9.6.1
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: CDC_TESTING
+    ports:
+      - '5432'
+    volumes:
+      - './docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d'

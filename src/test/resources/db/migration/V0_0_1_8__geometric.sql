@@ -1,0 +1,34 @@
+CREATE TABLE point_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value POINT
+);
+
+CREATE TABLE line_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value LINE
+);
+
+CREATE TABLE lseg_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value LSEG
+);
+
+CREATE TABLE box_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value BOX
+);
+
+CREATE TABLE path_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value PATH
+);
+
+CREATE TABLE polygon_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value POLYGON
+);
+
+CREATE TABLE circle_table (
+  ID    BIGSERIAL PRIMARY KEY NOT NULL,
+  value CIRCLE
+);
